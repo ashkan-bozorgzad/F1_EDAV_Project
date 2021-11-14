@@ -1,29 +1,12 @@
+   A mechanical sport par excellence, F1 has acquired an incredible level of technicality and complexity over
+the years. The result of very strict regulatory constraints to guarantee the safety of drivers and the fair play of
+the competition, it pushes manufacturers to take advantage of digital tools such as simulation and data analysis
+to optimize the performance of single-seaters.
 
-### Render the book
-
-- [ ] 1. Install **bookdown** with `install.packages("bookdown")`. If you already have it, update to the most recent version.
-
-- [ ] 2. Render locally with `bookdown::render_book("index.Rmd")` or clicking the *Build book* button which should appear in the Build tab (in the same pane as Environment, History, Connections, ...).
-
-- [ ] 3. Use `browseURL("docs/index.html")` to view your book locally (or just open `index.html` in a browser).
-
-- [ ] 4. If it looks good, commit and push all changed files to GitHub. 
-
-(You will need to repeat steps 2 and 4 every time you wish to update the book online.)
-
-### Edit README	
-
-Once you've completed these steps, delete the content of this **README** and add a short description of your project with a link to the book URL. It would be appreciated if you add the following to the end:	
+   The issue at stake in this sport has become more global. There is not only a sporting competition but also
+a technical competition between the teams to improve their performance by using new technologies to make
+better solutions. Data analysis and visualization are robust tools to not only detect problems and defects, but
+also find the most optimum solution for them. Analyzing and visualizing huge amount of data generated in this
+industry can lead to better performance of cars, drivers and technicians.
 
 *This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*	
-
-### Demo Video	
-
-A demo video showing how to create a **bookdown book** following these similar instructions: http://bit.ly/fiveminutebookdown Note that this video uses a different template.
-
-### Additional features	
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
-
-
-

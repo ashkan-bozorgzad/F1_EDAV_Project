@@ -5,18 +5,18 @@
 ```{r,echo=FALSE}
 library(readr)
 
-circuits <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/circuits.csv")
-constructor_results <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructor_results.csv")
-constructor_standings <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructor_standings.csv")
-constructors <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructors.csv")
-driver_standings <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/driver_standings.csv")
-drivers <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/drivers.csv")
-lap_times <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/lap_times.csv")
-pit_stops <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/pit_stops.csv")
-qualifying <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/qualifying.csv")
-races <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/races.csv")
-results <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/results.csv")
-status <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/status.csv")
+circuits <- read_csv("data/circuits.csv")
+constructor_results <- read_csv("data/constructor_results.csv")
+constructor_standings <- read_csv("data/constructor_standings.csv")
+constructors <- read_csv("data/constructors.csv")
+driver_standings <- read_csv("data/driver_standings.csv")
+drivers <- read_csv("data/drivers.csv")
+lap_times <- read_csv("data/lap_times.csv")
+pit_stops <- read_csv("data/pit_stops.csv")
+qualifying <- read_csv("data/qualifying.csv")
+races <- read_csv("data/races.csv")
+results <- read_csv("data/results.csv")
+status <- read_csv("data/status.csv")
 ```
 
 <img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/logo.png">

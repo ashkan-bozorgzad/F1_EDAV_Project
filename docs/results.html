@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Results | Formula One Analysis</title>
-  <meta name="description" content="Chapter 5 Results | Formula One Analysis" />
+  <title>Chapter 6 Results | Formula One Analysis</title>
+  <meta name="description" content="Chapter 6 Results | Formula One Analysis" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Results | Formula One Analysis" />
+  <meta property="og:title" content="Chapter 6 Results | Formula One Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Results | Formula One Analysis" />
+  <meta name="twitter:title" content="Chapter 6 Results | Formula One Analysis" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Aknin, Ashkan Bozorgzad" />
 
 
-<meta name="date" content="2021-11-14" />
+<meta name="date" content="2021-11-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,14 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 
 
 
@@ -75,11 +83,17 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="3" data-path="data-sources-1.html"><a href="data-sources-1.html"><i class="fa fa-check"></i><b>3</b> Data sources</a></li>
+<li class="chapter" data-level="4" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>4</b> Data transformation</a></li>
+<li class="chapter" data-level="5" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>5</b> Missing values</a></li>
+<li class="chapter" data-level="6" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>6</b> Results</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="results.html"><a href="results.html#formula-1-circuits-since-1950"><i class="fa fa-check"></i><b>6.1</b> Formula 1 circuits since 1950</a></li>
+<li class="chapter" data-level="6.2" data-path="results.html"><a href="results.html#italy-grand-prix-2021-monza"><i class="fa fa-check"></i><b>6.2</b> Italy Grand Prix 2021 (Monza)</a></li>
+<li class="chapter" data-level="6.3" data-path="results.html"><a href="results.html#more-than-just-a-race"><i class="fa fa-check"></i><b>6.3</b> More than just a race …</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>7</b> Interactive component</a></li>
+<li class="chapter" data-level="8" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>8</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -99,9 +113,614 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="results" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="results" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Results</h1>
+<div id="formula-1-circuits-since-1950" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Formula 1 circuits since 1950</h2>
+<p>There are 77 circuits that have hosted a Formula 1 race since 1950. There are different types of circuits: permanent circuits, semi-permanent circuits and circuits created in urbanization like in Monaco. Initially the races were held mainly on circuits in Europe. From the 1980s onwards, Formula 1 races were held on the American continents and then from the 2000s onwards in Asia. A total of 32 countries have already hosted a Formula 1 Grand Prix.
+Here is a map listing all the circuits practiced since 1950. The number of races being proportional to the radius of the circle.</p>
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+<div id="htmlwidget-65633e77192052d4f08b" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-65633e77192052d4f08b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[-37.8497,2.76083,26.0325,41.57,40.9517,43.7347,45.5,46.8642,52.0786,49.3278,47.5789,39.4589,50.4372,45.6156,1.2914,35.3717,31.3389,-23.7036,39.795,50.3356,44.3439,34.8431,47.2197,24.4672,-34.6943,36.7083,38.7506,34.915,-34.9272,-25.9894,52.8306,19.4042,33.4479,43.2506,34.7333,-22.9756,42.3298,51.3569,52.3888,50.9894,47.3625,32.7774,33.7651,36.1162,40.6171,42.3369,57.2653,44.0481,41.3664,50.6211,45.7472,46.1877,49.3306,47.95,49.2542,-33.0486,47.2039,53.4769,41.1705,33.937,52.4806,38.7197,27.4547,33.5786,42.475,46.9589,41.3903,28.3487,30.1328,47.2197,43.4057,40.3725,37.227,43.9975,21.5433],[144.968,101.738,50.5106,2.26111,29.405,7.42056,-73.5228,3.16361,-1.01694,8.56583,19.2486,-0.331667,5.97139,9.28111,103.864,138.927,121.22,-46.6997,-86.2347,6.9475,11.7167,136.541,14.7647,54.6031,-58.4593,-6.03417,-9.39417,134.221,138.617,28.0767,-1.37528,-99.0907,-112.075,5.79167,126.417,-43.395,-83.0401,0.263056,4.54092,5.25694,4.89913,-96.7587,-118.189,-115.174,-3.58558,-76.9272,13.6042,-78.6756,2.15167,4.32694,3.03889,-74.6099,1.00458,0.224231,3.93083,27.8736,14.7478,-2.94056,-8.67325,-117.273,13.2514,-9.20306,-81.3483,-7.6875,14.1508,7.40194,2.11667,77.5331,-97.6411,14.7647,39.9578,49.8533,-8.6267,11.3719,39.1728],[3.125,2.375,2.25,3.875,1.125,8.375,5,2.25,7,4.625,4.5,0.625,6.75,8.875,1.5,0.5,2,4.75,2.375,5.125,3.625,3.875,3.125,1.625,2.5,0.875,1.625,0.25,1.375,2.5,0.125,2.625,0.375,2.125,0.5,1.25,0.875,1.75,3.875,1.25,0.75,0.125,1,0.25,1.125,2.5,0.75,1,0.5,0.25,0.5,0.25,0.625,0.125,1.375,0.375,0.125,0.625,0.25,0.125,0.125,0.125,0.125,0.125,0.125,0.625,0.25,0.375,1.125,1.25,1,0.625,0.25,0.125,0.125],null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},null,null,["Australia<br/>Melbourne<br/>Albert Park Grand Prix Circuit<br/>25<br/>http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit","Malaysia<br/>Kuala Lumpur<br/>Sepang International Circuit<br/>19<br/>http://en.wikipedia.org/wiki/Sepang_International_Circuit","Bahrain<br/>Sakhir<br/>Bahrain International Circuit<br/>18<br/>http://en.wikipedia.org/wiki/Bahrain_International_Circuit","Spain<br/>Montmeló<br/>Circuit de Barcelona-Catalunya<br/>31<br/>http://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya","Turkey<br/>Istanbul<br/>Istanbul Park<br/>9<br/>http://en.wikipedia.org/wiki/Istanbul_Park","Monaco<br/>Monte-Carlo<br/>Circuit de Monaco<br/>67<br/>http://en.wikipedia.org/wiki/Circuit_de_Monaco","Canada<br/>Montreal<br/>Circuit Gilles Villeneuve<br/>40<br/>http://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve","France<br/>Magny Cours<br/>Circuit de Nevers Magny-Cours<br/>18<br/>http://en.wikipedia.org/wiki/Circuit_de_Nevers_Magny-Cours","UK<br/>Silverstone<br/>Silverstone Circuit<br/>56<br/>http://en.wikipedia.org/wiki/Silverstone_Circuit","Germany<br/>Hockenheim<br/>Hockenheimring<br/>37<br/>http://en.wikipedia.org/wiki/Hockenheimring","Hungary<br/>Budapest<br/>Hungaroring<br/>36<br/>http://en.wikipedia.org/wiki/Hungaroring","Spain<br/>Valencia<br/>Valencia Street Circuit<br/>5<br/>http://en.wikipedia.org/wiki/Valencia_Street_Circuit","Belgium<br/>Spa<br/>Circuit de Spa-Francorchamps<br/>54<br/>http://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps","Italy<br/>Monza<br/>Autodromo Nazionale di Monza<br/>71<br/>http://en.wikipedia.org/wiki/Autodromo_Nazionale_Monza","Singapore<br/>Marina Bay<br/>Marina Bay Street Circuit<br/>12<br/>http://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit","Japan<br/>Oyama<br/>Fuji Speedway<br/>4<br/>http://en.wikipedia.org/wiki/Fuji_Speedway","China<br/>Shanghai<br/>Shanghai International Circuit<br/>16<br/>http://en.wikipedia.org/wiki/Shanghai_International_Circuit","Brazil<br/>São Paulo<br/>Autódromo José Carlos Pace<br/>38<br/>http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace","USA<br/>Indianapolis<br/>Indianapolis Motor Speedway<br/>19<br/>http://en.wikipedia.org/wiki/Indianapolis_Motor_Speedway","Germany<br/>Nürburg<br/>Nürburgring<br/>41<br/>http://en.wikipedia.org/wiki/N%C3%BCrburgring","Italy<br/>Imola<br/>Autodromo Enzo e Dino Ferrari<br/>29<br/>http://en.wikipedia.org/wiki/Autodromo_Enzo_e_Dino_Ferrari","Japan<br/>Suzuka<br/>Suzuka Circuit<br/>31<br/>http://en.wikipedia.org/wiki/Suzuka_Circuit","Austria<br/>Spielberg<br/>A1-Ring<br/>25<br/>http://en.wikipedia.org/wiki/A1-Ring","UAE<br/>Abu Dhabi<br/>Yas Marina Circuit<br/>13<br/>http://en.wikipedia.org/wiki/Yas_Marina_Circuit","Argentina<br/>Buenos Aires<br/>Autódromo Juan y Oscar Gálvez<br/>20<br/>http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Oscar_Alfredo_G%C3%A1lvez","Spain<br/>Jerez de la Frontera<br/>Circuito de Jerez<br/>7<br/>http://en.wikipedia.org/wiki/Circuito_Permanente_de_Jerez","Portugal<br/>Estoril<br/>Autódromo do Estoril<br/>13<br/>http://en.wikipedia.org/wiki/Aut%C3%B3dromo_do_Estoril","Japan<br/>Okayama<br/>Okayama International Circuit<br/>2<br/>http://en.wikipedia.org/wiki/TI_Circuit","Australia<br/>Adelaide<br/>Adelaide Street Circuit<br/>11<br/>http://en.wikipedia.org/wiki/Adelaide_Street_Circuit","South Africa<br/>Midrand<br/>Kyalami<br/>20<br/>http://en.wikipedia.org/wiki/Kyalami","UK<br/>Castle Donington<br/>Donington Park<br/>1<br/>http://en.wikipedia.org/wiki/Donington_Park","Mexico<br/>Mexico City<br/>Autódromo Hermanos Rodríguez<br/>21<br/>http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez","USA<br/>Phoenix<br/>Phoenix street circuit<br/>3<br/>http://en.wikipedia.org/wiki/Phoenix_street_circuit","France<br/>Le Castellet<br/>Circuit Paul Ricard<br/>17<br/>http://en.wikipedia.org/wiki/Paul_Ricard_Circuit","Korea<br/>Yeongam County<br/>Korean International Circuit<br/>4<br/>http://en.wikipedia.org/wiki/Korean_International_Circuit","Brazil<br/>Rio de Janeiro<br/>Autódromo Internacional Nelson Piquet<br/>10<br/>http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_Nelson_Piquet","USA<br/>Detroit<br/>Detroit Street Circuit<br/>7<br/>http://en.wikipedia.org/wiki/Detroit_street_circuit","UK<br/>Kent<br/>Brands Hatch<br/>14<br/>http://en.wikipedia.org/wiki/Brands_Hatch","Netherlands<br/>Zandvoort<br/>Circuit Park Zandvoort<br/>31<br/>http://en.wikipedia.org/wiki/Circuit_Zandvoort","Belgium<br/>Heusden-Zolder<br/>Zolder<br/>10<br/>http://en.wikipedia.org/wiki/Zolder","France<br/>Dijon<br/>Dijon-Prenois<br/>6<br/>http://en.wikipedia.org/wiki/Dijon-Prenois","USA<br/>Dallas<br/>Fair Park<br/>1<br/>http://en.wikipedia.org/wiki/Fair_Park","USA<br/>California<br/>Long Beach<br/>8<br/>http://en.wikipedia.org/wiki/Long_Beach,_California","USA<br/>Nevada<br/>Las Vegas Street Circuit<br/>2<br/>http://en.wikipedia.org/wiki/Las_Vegas,_Nevada","Spain<br/>Madrid<br/>Jarama<br/>9<br/>http://en.wikipedia.org/wiki/Circuito_Permanente_Del_Jarama","USA<br/>New York State<br/>Watkins Glen<br/>20<br/>http://en.wikipedia.org/wiki/Watkins_Glen_International","Sweden<br/>Anderstorp<br/>Scandinavian Raceway<br/>6<br/>http://en.wikipedia.org/wiki/Scandinavian_Raceway","Canada<br/>Ontario<br/>Mosport International Raceway<br/>8<br/>http://en.wikipedia.org/wiki/Mosport","Spain<br/>Barcelona<br/>Montjuïc<br/>4<br/>http://en.wikipedia.org/wiki/Montju%C3%AFc_circuit","Belgium<br/>Brussels<br/>Nivelles-Baulers<br/>2<br/>http://en.wikipedia.org/wiki/Nivelles-Baulers","France<br/>Clermont-Ferrand<br/>Charade Circuit<br/>4<br/>http://en.wikipedia.org/wiki/Charade_Circuit","Canada<br/>Quebec<br/>Circuit Mont-Tremblant<br/>2<br/>http://en.wikipedia.org/wiki/Circuit_Mont-Tremblant","France<br/>Rouen<br/>Rouen-Les-Essarts<br/>5<br/>http://en.wikipedia.org/wiki/Rouen-Les-Essarts","France<br/>Le Mans<br/>Le Mans<br/>1<br/>http://en.wikipedia.org/wiki/Circuit_de_la_Sarthe#Bugatti_Circuit","France<br/>Reims<br/>Reims-Gueux<br/>11<br/>http://en.wikipedia.org/wiki/Reims-Gueux","South Africa<br/>Eastern Cape Province<br/>Prince George Circuit<br/>3<br/>http://en.wikipedia.org/wiki/Prince_George_Circuit","Austria<br/>Styria<br/>Zeltweg<br/>1<br/>http://en.wikipedia.org/wiki/Zeltweg_Airfield","UK<br/>Liverpool<br/>Aintree<br/>5<br/>http://en.wikipedia.org/wiki/Aintree_Motor_Racing_Circuit","Portugal<br/>Oporto<br/>Circuito da Boavista<br/>2<br/>http://en.wikipedia.org/wiki/Circuito_da_Boavista","USA<br/>California<br/>Riverside International Raceway<br/>1<br/>http://en.wikipedia.org/wiki/Riverside_International_Raceway","Germany<br/>Berlin<br/>AVUS<br/>1<br/>http://en.wikipedia.org/wiki/AVUS","Portugal<br/>Lisbon<br/>Monsanto Park Circuit<br/>1<br/>http://en.wikipedia.org/wiki/Monsanto_Park_Circuit","USA<br/>Florida<br/>Sebring International Raceway<br/>1<br/>http://en.wikipedia.org/wiki/Sebring_Raceway","Morocco<br/>Casablanca<br/>Ain Diab<br/>1<br/>http://en.wikipedia.org/wiki/Ain-Diab_Circuit","Italy<br/>Pescara<br/>Pescara Circuit<br/>1<br/>http://en.wikipedia.org/wiki/Pescara_Circuit","Switzerland<br/>Bern<br/>Circuit Bremgarten<br/>5<br/>http://en.wikipedia.org/wiki/Circuit_Bremgarten","Spain<br/>Barcelona<br/>Circuit de Pedralbes<br/>2<br/>http://en.wikipedia.org/wiki/Pedralbes_Circuit","India<br/>Uttar Pradesh<br/>Buddh International Circuit<br/>3<br/>http://en.wikipedia.org/wiki/Buddh_International_Circuit","USA<br/>Austin<br/>Circuit of the Americas<br/>9<br/>http://en.wikipedia.org/wiki/Circuit_of_the_Americas","Austria<br/>Spielberg<br/>Red Bull Ring<br/>10<br/>http://en.wikipedia.org/wiki/Red_Bull_Ring","Russia<br/>Sochi<br/>Sochi Autodrom<br/>8<br/>http://en.wikipedia.org/wiki/Sochi_Autodrom","Azerbaijan<br/>Baku<br/>Baku City Circuit<br/>5<br/>http://en.wikipedia.org/wiki/Baku_City_Circuit","Portugal<br/>Portimão<br/>Autódromo Internacional do Algarve<br/>2<br/>http://en.wikipedia.org/wiki/Algarve_International_Circuit","Italy<br/>Mugello<br/>Autodromo Internazionale del Mugello<br/>1<br/>http://en.wikipedia.org/wiki/Mugello_Circuit","Saudi Arabia<br/>Jeddah<br/>Jeddah Street Circuit<br/>1<br/>http://en.wikipedia.org/wiki/Jeddah_Street_Circuit"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-37.8497,57.2653],"lng":[-118.189,144.968]}},"evals":[],"jsHooks":[]}</script>
+<p>The 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo. There have been 71 and 67 races respectively.</p>
+</div>
+<div id="italy-grand-prix-2021-monza" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Italy Grand Prix 2021 (Monza)</h2>
+<p>As said before, the Italian Grand Prix is one of the most prestigious Formula 1 races of the season. In the 2021 edition, 19 drivers were on the starting line. This graph allows us to follow the progress of the race over the laps.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="1440" style="display: block; margin: auto;" /></p>
+<p>We can notice on the 22nd lap a recurrent movement between the drivers. This corresponds to the pit stops which are inevitable at this level of the race for all the drivers.</p>
+<p>At the finish line, out of the 19 pilots, only 15 crossed it. Here are the reasons:</p>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Position
+</th>
+<th style="text-align:right;">
+laps
+</th>
+<th style="text-align:right;">
+Last Name
+</th>
+<th style="text-align:right;">
+First Name
+</th>
+<th style="text-align:right;">
+Nationality
+</th>
+<th style="text-align:right;">
+Constructor
+</th>
+<th style="text-align:right;">
+Status
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Ricciardo
+</td>
+<td style="text-align:right;">
+Daniel
+</td>
+<td style="text-align:right;">
+Australian
+</td>
+<td style="text-align:right;">
+McLaren
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Norris
+</td>
+<td style="text-align:right;">
+Lando
+</td>
+<td style="text-align:right;">
+British
+</td>
+<td style="text-align:right;">
+McLaren
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Bottas
+</td>
+<td style="text-align:right;">
+Valtteri
+</td>
+<td style="text-align:right;">
+Finnish
+</td>
+<td style="text-align:right;">
+Mercedes
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Leclerc
+</td>
+<td style="text-align:right;">
+Charles
+</td>
+<td style="text-align:right;">
+Monegasque
+</td>
+<td style="text-align:right;">
+Ferrari
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Pérez
+</td>
+<td style="text-align:right;">
+Sergio
+</td>
+<td style="text-align:right;">
+Mexican
+</td>
+<td style="text-align:right;">
+Red Bull
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Sainz
+</td>
+<td style="text-align:right;">
+Carlos
+</td>
+<td style="text-align:right;">
+Spanish
+</td>
+<td style="text-align:right;">
+Ferrari
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Stroll
+</td>
+<td style="text-align:right;">
+Lance
+</td>
+<td style="text-align:right;">
+Canadian
+</td>
+<td style="text-align:right;">
+Aston Martin
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Alonso
+</td>
+<td style="text-align:right;">
+Fernando
+</td>
+<td style="text-align:right;">
+Spanish
+</td>
+<td style="text-align:right;">
+Alpine F1 Team
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Russell
+</td>
+<td style="text-align:right;">
+George
+</td>
+<td style="text-align:right;">
+British
+</td>
+<td style="text-align:right;">
+Williams
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+20
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Ocon
+</td>
+<td style="text-align:right;">
+Esteban
+</td>
+<td style="text-align:right;">
+French
+</td>
+<td style="text-align:right;">
+Alpine F1 Team
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Latifi
+</td>
+<td style="text-align:right;">
+Nicholas
+</td>
+<td style="text-align:right;">
+Canadian
+</td>
+<td style="text-align:right;">
+Williams
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Vettel
+</td>
+<td style="text-align:right;">
+Sebastian
+</td>
+<td style="text-align:right;">
+German
+</td>
+<td style="text-align:right;">
+Aston Martin
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Giovinazzi
+</td>
+<td style="text-align:right;">
+Antonio
+</td>
+<td style="text-align:right;">
+Italian
+</td>
+<td style="text-align:right;">
+Alfa Romeo
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Kubica
+</td>
+<td style="text-align:right;">
+Robert
+</td>
+<td style="text-align:right;">
+Polish
+</td>
+<td style="text-align:right;">
+Alfa Romeo
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 100.00%">53</span>
+</td>
+<td style="text-align:right;">
+Schumacher
+</td>
+<td style="text-align:right;">
+Mick
+</td>
+<td style="text-align:right;">
+German
+</td>
+<td style="text-align:right;">
+Haas F1 Team
+</td>
+<td style="text-align:right;">
+Finished
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 77.36%">41</span>
+</td>
+<td style="text-align:right;">
+Mazepin
+</td>
+<td style="text-align:right;">
+Nikita
+</td>
+<td style="text-align:right;">
+Russian
+</td>
+<td style="text-align:right;">
+Haas F1 Team
+</td>
+<td style="text-align:right;">
+Power Unit
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 47.17%">25</span>
+</td>
+<td style="text-align:right;">
+Hamilton
+</td>
+<td style="text-align:right;">
+Lewis
+</td>
+<td style="text-align:right;">
+British
+</td>
+<td style="text-align:right;">
+Mercedes
+</td>
+<td style="text-align:right;">
+Collision
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 47.17%">25</span>
+</td>
+<td style="text-align:right;">
+Verstappen
+</td>
+<td style="text-align:right;">
+Max
+</td>
+<td style="text-align:right;">
+Dutch
+</td>
+<td style="text-align:right;">
+Red Bull
+</td>
+<td style="text-align:right;">
+Collision
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 5.66%">3</span>
+</td>
+<td style="text-align:right;">
+Gasly
+</td>
+<td style="text-align:right;">
+Pierre
+</td>
+<td style="text-align:right;">
+French
+</td>
+<td style="text-align:right;">
+AlphaTauri
+</td>
+<td style="text-align:right;">
+Suspension
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: lightgreen; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+Tsunoda
+</td>
+<td style="text-align:right;">
+Yuki
+</td>
+<td style="text-align:right;">
+Japanese
+</td>
+<td style="text-align:right;">
+AlphaTauri
+</td>
+<td style="text-align:right;">
+Brakes
+</td>
+</tr>
+</tbody>
+</table>
+<p>During this course we can notice a lightning rise of the Finnish pilot Valtteri Bottas. Let’s compare for each lap the times done by Bottas and Ricciardo in the lead throughout the race.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
+<p>We can notice that it is at the beginning of the race that Bottas takes delay, in particular during the first lap where his time is much longer than that of Ricciardo. Thereafter from the 12th lap, Bottas has times lower than those of Ricciardo and proceeds to a gradual rise in places.</p>
+</div>
+<div id="more-than-just-a-race" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> More than just a race …</h2>
+<p><br/>
+<br/></p>
+<div style="float:right;position: relative; top: -80px;">
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
+</div>
+<p>Formula One is certainly a sport in which pilots push their performance but it is also a technological competition between constructors. Each constructor wants to recruit the best drivers in order to prove that their technology is the best during the races on the circuits. In the same way, each driver wants to join the most prestigious constructors in order to have more means and the most performing machines.</p>
+<p>On this graph on the right, we can see the constructors with which each driver has been associated during at least one season since 2000.</p>
+<p>We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed manufacturers several times (Alfa Romeo, Ferrari, McLaren).</p>
+<p>We can see on the following graph the proportion of victory of each constructor on the number of realized races. The graph is ordered from left to right according to the decreasing number of victories. If two drivers of the same constructor participate in the same race it is counted as two chances to win and therefore two races. Ferrari has the most wins but a lower proportion than Mercedes or Red Bull for example.</p>
+<p><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="960" /></p>
 
+</div>
 </div>
             </section>
 
@@ -140,7 +759,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/05-results.Rmd",
+"link": "https://github.com/ashkan-bozorgzad/F1_EDAV_Project/edit/main/05-results.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -148,7 +767,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/05-results.Rmd",
+"link": "https://github.com/ashkan-bozorgzad/F1_EDAV_Project/blob/main/05-results.Rmd",
 "text": null
 },
 "download": null,

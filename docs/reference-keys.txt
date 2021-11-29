@@ -1,7 +1,11 @@
 introduction
 data-sources
+data-sources-1
 data-transformation
 missing-values
 results
+formula-1-circuits-since-1950
+italy-grand-prix-2021-monza
+more-than-just-a-race
 interactive-component
 conclusion

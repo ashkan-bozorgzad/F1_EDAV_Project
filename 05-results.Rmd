@@ -1,0 +1,177 @@
+# Results
+
+```{r }
+library(readr)
+library(vcd)
+library(ggalluvial)
+library(dplyr)
+library(plotly)
+library(d3r)
+library(tidyverse)
+library(leaflet)
+library(formattable)
+```
+
+
+```{r,echo=FALSE}
+circuits <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/circuits.csv")
+constructor_results <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructor_results.csv")
+constructor_standings <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructor_standings.csv")
+constructors <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructors.csv")
+driver_standings <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/driver_standings.csv")
+drivers <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/drivers.csv")
+lap_times <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/lap_times.csv")
+pit_stops <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/pit_stops.csv")
+qualifying <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/qualifying.csv")
+races <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/races.csv")
+results <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/results.csv")
+status <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/status.csv")
+```
+
+
+
+## Formula 1 circuits since 1950
+
+There are 77 circuits that have hosted a Formula 1 race since 1950. There are different types of circuits: permanent circuits, semi-permanent circuits and circuits created in urbanization like in Monaco. Initially the races were held mainly on circuits in Europe. From the 1980s onwards, Formula 1 races were held on the American continents and then from the 2000s onwards in Asia. A total of 32 countries have already hosted a Formula 1 Grand Prix. 
+Here is a map listing all the circuits practiced since 1950. The number of races being proportional to the radius of the circle.  
+
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+
+```{r leaflet, fig.align="center", echo=FALSE}
+df_plot1 = circuits
+df_plot1_2 = races %>% count(circuitId, sort = TRUE) 
+df_plot1_2 = rename(df_plot1_2, number = n)
+df_plot1 = merge(df_plot1, df_plot1_2, by ="circuitId")
+
+leaflet(df_plot1) %>% addTiles() %>% addCircleMarkers(lng= ~lng, lat=~lat, radius = ~number/8, popup = ~paste(country,location, name, number, url, sep = '<br/>'))  
+```
+
+The 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo. There have been 71 and 67 races respectively. 
+
+
+
+## Italy Grand Prix 2021 (Monza)
+
+As said before, the Italian Grand Prix is one of the most prestigious Formula 1 races of the season. In the 2021 edition, 19 drivers were on the starting line. This graph allows us to follow the progress of the race over the laps. 
+
+```{r, fig.width=15, fig.height=12, fig.align="center", echo=FALSE}
+df_plot2 = filter(lap_times, raceId == 1065)
+df_plot2 = merge(df_plot2, drivers, by ="driverId")
+df_plot2 = df_plot2 %>% select(-c("milliseconds", "time","raceId","url","nationality","dob","forename","code","number","driverRef","driverId"))
+df_pivot <- pivot_wider(df_plot2, names_from = lap, values_from = position)
+df_pivot <- pivot_longer(df_pivot, cols = 2:54, names_to = "lap",values_to = "position")
+df_plot2 = df_pivot %>% transform(df_pivot, lap = as.numeric(lap))
+df_plot2[] <- lapply( df_plot2, factor)
+
+ggplot(df_plot2, aes(x = lap, stratum = position, alluvium = surname, fill = surname, label = surname)) +
+  geom_flow(stat = "alluvium", lode.guidance = "rightleft", color = "darkgray") +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)), size = 3, decreasing = TRUE) +
+  theme(legend.position = "bottom") +
+  ggtitle("Italy Grand Prix 2021")
+```
+
+We can notice on the 22nd lap a recurrent movement between the drivers. This corresponds to the pit stops which are inevitable at this level of the race for all the drivers. 
+
+At the finish line, out of the 19 pilots, only 15 crossed it. Here are the reasons: 
+
+```{r, fig.align="center", echo=FALSE}
+df_plot2 = filter(results, raceId == 1065)
+df_plot2 = merge(df_plot2, drivers, by ="driverId")
+df_plot2 = merge(df_plot2, status, by ="statusId")
+df_plot2 = merge(df_plot2, constructors, by ="constructorId")
+df_plot2 = df_plot2[c("positionOrder","laps","surname","forename","nationality.x","name","status")]
+df_plot2 = rename(df_plot2, Position = positionOrder, "Last Name" = surname, "First Name" = forename, Nationality = nationality.x, Constructor = name, Status = status)
+df_plot2 = df_plot2[with(df_plot2, order(Position)),]
+
+formattable(df_plot2, list(
+  laps = color_bar("lightgreen")))
+```
+
+During this course we can notice a lightning rise of the Finnish pilot Valtteri Bottas. Let's compare for each lap the times done by Bottas and Ricciardo in the lead throughout the race. 
+
+```{r,fig.width=10, fig.height=5}
+df_plot2 = filter(lap_times, raceId == 1065 & driverId %in% c(817,822))
+df_plot2 = merge(df_plot2, drivers, by = "driverId")
+df_plot2 = rename(df_plot2, Drivers = surname, Laps = lap, Time = time)
+
+ggplot(df_plot2, aes(x = Laps, y = Time, color = Drivers, shape = Drivers)) +
+  geom_point() + 
+  geom_smooth()
+```
+
+We can notice that it is at the beginning of the race that Bottas takes delay, in particular during the first lap where his time is much longer than that of Ricciardo. Thereafter from the 12th lap, Bottas has times lower than those of Ricciardo and proceeds to a gradual rise in places.
+
+## More than just a race ...
+
+<br/>
+<br/>
+
+<div style= "float:right;position: relative; top: -80px;">
+```{r,fig.width=6, fig.height=25}
+df_plot3 = merge(results, drivers, by ="driverId")
+df_plot3 = merge(df_plot3, constructors, by ="constructorId")
+df_plot3 = merge(df_plot3, races, by ="raceId")
+df_plot3 = df_plot3[c("surname","name.x","year")]
+df_plot3 = unique(df_plot3)
+df_plot3 = filter(df_plot3, name.x %in% c("Ferrari","Mercedes","McLaren","Alfa Romeo","Alpine F1 Team","AlphaTauri","Aston Martin","Haas F1 Team","Red Bull") & year %in% c(2000:2021))
+
+ggplot(df_plot3, aes(axis1 = surname, axis2 = name.x, y = year)) +
+  geom_alluvium(aes(fill = name.x),show.legend = FALSE) +
+  geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)))
+
+```
+</div>
+
+Formula One is certainly a sport in which pilots push their performance but it is also a technological competition between constructors. Each constructor wants to recruit the best drivers in order to prove that their technology is the best during the races on the circuits. In the same way, each driver wants to join the most prestigious constructors in order to have more means and the most performing machines. 
+
+On this graph on the right, we can see the constructors with which each driver has been associated during at least one season since 2000.
+
+We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed manufacturers several times (Alfa Romeo, Ferrari, McLaren).
+
+We can see on the following graph the proportion of victory of each constructor on the number of realized races. The graph is ordered from left to right according to the decreasing number of victories. If two drivers of the same constructor participate in the same race it is counted as two chances to win and therefore two races. Ferrari has the most wins but a lower proportion than Mercedes or Red Bull for example. 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+```{r,fig.width=10, fig.height=5}
+df_plot4 = filter(results, position == 1) %>% count(constructorId, sort = TRUE) 
+df_plot4 = rename(df_plot4, Win = n)
+df_plot4_2 = results %>% count(constructorId, sort = TRUE)
+df_plot4_2 = rename(df_plot4_2, Races = n)
+df_plot4 = merge (df_plot4, df_plot4_2, by ="constructorId")
+df_plot4 = merge (df_plot4, constructors, by ="constructorId")
+df_plot4 = df_plot4[c("name","nationality","Races","Win")]
+
+df_plot4 = filter(results, position == 1) %>% count(constructorId, sort = TRUE) 
+winners = as.vector(df_plot4[,c("constructorId")])
+df_plot4 = merge(df_plot4, results, by ="constructorId")
+df_plot4 = merge(df_plot4, constructors, by ="constructorId")
+df_plot4 = df_plot4 %>% mutate(Status = if_else(positionOrder == 1, "Win", "Not Win"))
+df_plot4 = filter(df_plot4, constructorId %in% as.vector(t(winners))) 
+
+ggplot(df_plot4, aes(fill = Status, y = raceId, x = reorder(name,-n))) + 
+    geom_bar(position="fill", stat="identity") +
+    theme(axis.text.x = element_text(angle = 45, size=10, hjust = 1)) +
+    xlab("Constructors") + ylab("Races")
+```

@@ -1,2 +1,45 @@
 # Data sources
 
+# Data sources
+
+```{r,echo=FALSE}
+library(readr)
+
+circuits <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/circuits.csv")
+constructor_results <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructor_results.csv")
+constructor_standings <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructor_standings.csv")
+constructors <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/constructors.csv")
+driver_standings <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/driver_standings.csv")
+drivers <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/drivers.csv")
+lap_times <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/lap_times.csv")
+pit_stops <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/pit_stops.csv")
+qualifying <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/qualifying.csv")
+races <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/races.csv")
+results <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/results.csv")
+status <- read_csv("~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/f1db_csv/status.csv")
+```
+
+<img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/logo.png">
+
+Sources : <a href="https://ergast.com/mrd/db/">Look at the source website https://ergast.com/mrd/db/</a>
+
+The dataset consists of several files related to F1. The files contain technical information on tracks, races, constructors and drivers. In addition, data about the performance of the teams and drivers such as lap times and accidents are available.
+
+<br/>
+<img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/image_data.png">
+
+The data was collected by a simple download. However, there is an API that allows to make GET requests using url in order to get specific data (<a href="https://ergast.com/mrd/"> link </a>).
+
+The data records races, constructor and driver data since 1950. Each record in each file is identified by an unique id allowing to merge the information tables. 
+
+We have information of an informative nature such as the list of constructors: 
+
+```{r,echo=FALSE}
+head(constructors)
+```
+
+We have more technical information like lap times for each race: 
+
+```{r,echo=FALSE}
+head(lap_times)
+```

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data sources | Formula One Analysis</title>
-  <meta name="description" content="Chapter 2 Data sources | Formula One Analysis" />
+  <title>Chapter 3 Data sources | Formula One Analysis</title>
+  <meta name="description" content="Chapter 3 Data sources | Formula One Analysis" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data sources | Formula One Analysis" />
+  <meta property="og:title" content="Chapter 3 Data sources | Formula One Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data sources | Formula One Analysis" />
+  <meta name="twitter:title" content="Chapter 3 Data sources | Formula One Analysis" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="data-sources-1.html"/>
+<link rel="prev" href="data-sources.html"/>
+<link rel="next" href="data-transformation.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -113,16 +113,44 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-sources" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<div id="data-sources-1" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Data sources</h1>
+<p><img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/logo.png"></p>
+<p>Sources : <a href="https://ergast.com/mrd/db/">Look at the source website https://ergast.com/mrd/db/</a></p>
+<p>The dataset consists of several files related to F1. The files contain technical information on tracks, races, constructors and drivers. In addition, data about the performance of the teams and drivers such as lap times and accidents are available.</p>
+<p><br/>
+<img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/image_data.png"></p>
+<p>The data was collected by a simple download. However, there is an API that allows to make GET requests using url in order to get specific data (<a href="https://ergast.com/mrd/"> link </a>).</p>
+<p>The data records races, constructor and driver data since 1950. Each record in each file is identified by an unique id allowing to merge the information tables.</p>
+<p>We have information of an informative nature such as the list of constructors:</p>
+<pre><code>## # A tibble: 6 x 5
+##   constructorId constructorRef name       nationality url                       
+##           &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;                     
+## 1             1 mclaren        McLaren    British     http://en.wikipedia.org/w~
+## 2             2 bmw_sauber     BMW Sauber German      http://en.wikipedia.org/w~
+## 3             3 williams       Williams   British     http://en.wikipedia.org/w~
+## 4             4 renault        Renault    French      http://en.wikipedia.org/w~
+## 5             5 toro_rosso     Toro Rosso Italian     http://en.wikipedia.org/w~
+## 6             6 ferrari        Ferrari    Italian     http://en.wikipedia.org/w~</code></pre>
+<p>We have more technical information like lap times for each race:</p>
+<pre><code>## # A tibble: 6 x 6
+##   raceId driverId   lap position time   milliseconds
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;time&gt;        &lt;dbl&gt;
+## 1    841       20     1        1 01:38         98109
+## 2    841       20     2        1 01:33         93006
+## 3    841       20     3        1 01:32         92713
+## 4    841       20     4        1 01:32         92803
+## 5    841       20     5        1 01:32         92342
+## 6    841       20     6        1 01:32         92605</code></pre>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-sources-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

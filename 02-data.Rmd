@@ -18,14 +18,14 @@ results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
 ```
 
-<img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/logo.png">
+<img src="Images/logo.png">
 
 Sources : <a href="https://ergast.com/mrd/db/">Look at the source website https://ergast.com/mrd/db/</a>
 
 The dataset consists of several files related to F1. The files contain technical information on tracks, races, constructors and drivers. In addition, data about the performance of the teams and drivers such as lap times and accidents are available.
 
 <br/>
-<img src="~/Desktop/Étude/Columbia/DATA_VISUALIZATION/HomeWorks/PROJECT/F1_EDAV_Project-main 2/Images/image_data.png">
+<img src="Images/image_data.png">
 
 The data was collected by a simple download. However, there is an API that allows to make GET requests using url in order to get specific data (<a href="https://ergast.com/mrd/"> link </a>).
 

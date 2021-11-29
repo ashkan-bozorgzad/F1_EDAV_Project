@@ -1,6 +1,5 @@
 # Data sources
 
-# Data sources
 
 ```{r,echo=FALSE}
 library(readr)

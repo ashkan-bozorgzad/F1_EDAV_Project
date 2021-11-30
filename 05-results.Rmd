@@ -14,6 +14,8 @@ library(formattable)
 
 
 ```{r,echo=FALSE}
+library(readr)
+
 circuits <- read_csv("data/circuits.csv")
 constructor_results <- read_csv("data/constructor_results.csv")
 constructor_standings <- read_csv("data/constructor_standings.csv")
@@ -27,6 +29,7 @@ races <- read_csv("data/races.csv")
 results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
 ```
+
 
 
 
@@ -107,52 +110,7 @@ We can notice that it is at the beginning of the race that Bottas takes delay, i
 
 ## More than just a race ...
 
-<br/>
-<br/>
-
-<div style= "float:right;position: relative; top: -80px;">
-```{r,fig.width=6, fig.height=25}
-df_plot3 = merge(results, drivers, by ="driverId")
-df_plot3 = merge(df_plot3, constructors, by ="constructorId")
-df_plot3 = merge(df_plot3, races, by ="raceId")
-df_plot3 = df_plot3[c("surname","name.x","year")]
-df_plot3 = unique(df_plot3)
-df_plot3 = filter(df_plot3, name.x %in% c("Ferrari","Mercedes","McLaren","Alfa Romeo","Alpine F1 Team","AlphaTauri","Aston Martin","Haas F1 Team","Red Bull") & year %in% c(2000:2021))
-
-ggplot(df_plot3, aes(axis1 = surname, axis2 = name.x, y = year)) +
-  geom_alluvium(aes(fill = name.x),show.legend = FALSE) +
-  geom_stratum() +
-  geom_text(stat = "stratum", aes(label = after_stat(stratum)))
-
-```
-</div>
-
-Formula One is certainly a sport in which pilots push their performance but it is also a technological competition between constructors. Each constructor wants to recruit the best drivers in order to prove that their technology is the best during the races on the circuits. In the same way, each driver wants to join the most prestigious constructors in order to have more means and the most performing machines. 
-
-On this graph on the right, we can see the constructors with which each driver has been associated during at least one season since 2000.
-
-We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed manufacturers several times (Alfa Romeo, Ferrari, McLaren).
-
 We can see on the following graph the proportion of victory of each constructor on the number of realized races. The graph is ordered from left to right according to the decreasing number of victories. If two drivers of the same constructor participate in the same race it is counted as two chances to win and therefore two races. Ferrari has the most wins but a lower proportion than Mercedes or Red Bull for example. 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 ```{r,fig.width=10, fig.height=5}
 df_plot4 = filter(results, position == 1) %>% count(constructorId, sort = TRUE) 
@@ -173,5 +131,27 @@ df_plot4 = filter(df_plot4, constructorId %in% as.vector(t(winners)))
 ggplot(df_plot4, aes(fill = Status, y = raceId, x = reorder(name,-n))) + 
     geom_bar(position="fill", stat="identity") +
     theme(axis.text.x = element_text(angle = 45, size=10, hjust = 1)) +
-    xlab("Constructors") + ylab("Races")
+    xlab("Constructors") + ylab("Races") +
+    ggtitle("Proportion of races won by constructors")
+```
+
+Formula One is certainly a sport in which pilots push their performance but it is also a technological competition between constructors. Each constructor wants to recruit the best drivers in order to prove that their technology is the best during the races on the circuits. In the same way, each driver wants to join the most prestigious constructors in order to have more means and the most performing machines. 
+
+On this graph on the right, we can see the constructors with which each driver has been associated during at least one season since 2000.
+
+We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed constructors several times (Alfa Romeo, Ferrari, McLaren).
+
+```{r,fig.width=15, fig.height=10}
+df_plot3 = merge(results, drivers, by ="driverId")
+df_plot3 = merge(df_plot3, constructors, by ="constructorId")
+df_plot3 = merge(df_plot3, races, by ="raceId")
+df_plot3 = df_plot3[c("surname","name.x","year")]
+df_plot3 = unique(df_plot3)
+df_plot3 = filter(df_plot3, df_plot3$name.x %in% c("Ferrari","Mercedes","McLaren","Alfa Romeo","Alpine F1 Team","AlphaTauri","Aston Martin","Haas F1 Team","Red Bull") & df_plot3$year %in% c(2000:2021))
+
+ggplot(df_plot3, aes(axis1 = name.x, axis2 = surname, y = year)) +
+  geom_alluvium(aes(fill = name.x),show.legend = FALSE) +
+  geom_stratum() +
+  coord_flip() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)),angle=c(90))                                               
 ```

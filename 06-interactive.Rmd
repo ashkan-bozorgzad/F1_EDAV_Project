@@ -13,7 +13,7 @@ library(formattable)
 ```
 
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, results="asis"}
 library(readr)
 library("jsonlite")
 
@@ -29,11 +29,37 @@ qualifying <- read_csv("data/qualifying.csv")
 races <- read_csv("data/races.csv")
 results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
+
+cat(
+  paste(
+  '<script>
+    var data = ',toJSON(circuits),';
+  </script>'
+  , sep="")
+)
 ```
 
-<script src="https://d3js.org/d3.v7.js">
+<html lang="en-US">
+<meta charset="utf-8">
+<head>
+  <!-- Load in the d3 library -->
+  <script src="https://d3js.org/d3.v7.js"></script>
+  
+<style>
+</style>
+</head>
+
+<body>
+  <svg align = center width="1600" height="800"> 
+    <!-- Add your SVG elements here -->   
+  </svg> 
+
+<script>
+
+d3.csv("https://github.com/ashkan-bozorgzad/F1_EDAV_Project/blob/decf7527793a05e1a67a491219c6e7e5e91b3cd7/data/races.csv", function(data) {
+});
 
 </script>
-<script>
-...
-</script>
+</body>
+</html>
+

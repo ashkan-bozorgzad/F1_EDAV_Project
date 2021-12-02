@@ -1,1 +1,4 @@
 # Missing values
+
+Even in a well-designed and controlled study, missing data occurs in almost all research. Missing data can reduce the statistical power of a study and can produce biased estimates, leading to invalid conclusions.Missing data (or missing values) is defined as the data value that is not stored for a variable in the observation of interest.
+

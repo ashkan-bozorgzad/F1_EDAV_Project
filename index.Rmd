@@ -7,3 +7,11 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+In Formula 1 racing, even the most subtle performance improvements can lead to victory—improvements not only to the car but also across a race team’s entire organization.
+
+F1 teams rely on partnerships with technology providers, leveraging high-performance computing, machine learning and edge computing to gain an edge on the track. These relationships are also valuable to service providers, showcasing cutting-edge uses for their data center technologies.
+
+A Formula 1 car contains about 80,000 components, according to Keyworth—and 90% of them will see replacement throughout the 23-race season in the interests of optimization. Analyzing data associated with these many different parts allows team members to correlate performance advantages, on the basis of both real and simulated races.
+
+It’s hard to overstate the role technology plays in F1 racing. Every F1 car contains 300 sensors which generate 1.1 million telemetry data points per second transmitted from the cars to the pits. During each race weekend 160 terabytes of data is sent between the remote race circuit and the F1 Media and Technology Center.
+

@@ -1,8 +1,6 @@
 # Data transformation
 
-The process of getting the data into a form in which we could work with it in R is very simple. 
-
-Once the `csv` data file is downloaded you just need to use the `read_csv` function from `reader` package and the data is already usable.
+The process of getting the data into a form in which we could work with it in R was little challenging. First the `csv` data files are downloaded. Then the `read_csv` function from `reader` package was used to store the data as lists in the corresponding variable.
 
 ```{r echo = TRUE}
 library(readr)
@@ -19,4 +17,59 @@ qualifying <- read_csv("data/qualifying.csv")
 races <- read_csv("data/races.csv")
 results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
+```
+
+One of the challenges of this project was dealing with time variables in data set. Firs, it was needed to make sure our time variables are stored in the correct format (Time format variable). Another challenge with these variable was that in our data set they are represented in two columns that is needed to be considered. Since the Formula one racing is very close between cars and constructors, times such as lap times is measured in milliseconds. As you can see in our data for lap times in Data sourced chapter, lap times are in two columns, time and milliseconds. Therefore, additional consideration is needed whenever it is needed to work with these variables.
+
+Another challenge of working with these data set was scatter of data in the different files. At the beginning, it was considered to create a large data frame of all variables that is needed and work with that. However, since we did not use all variables for all of our plots, we found that it is not efficient. For each of the plots. Therefore, for each of the plot a separate small dataframe was created.
+
+To be more familiar with formula one racing sports and our data set. Here we represents some basic plots.
+
+Here is the top 10 constructors with most wins (most points in each race count as one win for that race for each constructors) since 1950:
+
+```{r,echo=FALSE}
+library(dplyr)
+library(ggplot2)
+
+df_cons_bar = constructor_standings %>%
+  group_by(constructorId, position) %>%
+  summarize(n = n(),.groups = 'drop')  %>%
+  ungroup()
+
+df_cons_bar = filter(df_cons_bar, position == 1)
+df_cons_bar = merge(df_cons_bar, constructors, by ="constructorId")
+df_cons_bar <- df_cons_bar[order(-df_cons_bar$n),]
+df_cons_bar <- df_cons_bar[1:10,]
+
+ggplot(data=df_cons_bar, aes(x=reorder(name, -n), y=n)) +
+  geom_bar(stat="identity", width=0.5) +
+  ggtitle("Top 10 constructors with most wins") +
+  xlab("Nmae") +
+  ylab("Number of wins")
+
+```
+
+Here is the top 10 drivers with most wins since 1950:
+
+```{r,echo=FALSE}
+library(dplyr)
+library(ggplot2)
+
+df_dri_bar = driver_standings %>%
+  group_by(driverId, position) %>%
+  summarize(n = n(),.groups = 'drop')  %>%
+  ungroup()
+
+df_dri_bar = filter(df_dri_bar, position == 1)
+df_dri_bar = merge(df_dri_bar, drivers, by ="driverId")
+df_dri_bar <- df_dri_bar[order(-df_dri_bar$n),]
+df_dri_bar <- df_dri_bar[1:10,]
+
+ggplot(data=df_dri_bar, aes(x=reorder(surname, -n), y=n)) +
+  geom_bar(stat="identity", width=0.5) +
+  ggtitle("Top 10 drivers with most wins") +
+  xlab("Nmae") +
+  ylab("Number of wins")
+
+
 ```

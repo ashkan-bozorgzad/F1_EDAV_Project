@@ -22,7 +22,7 @@ status <- read_csv("data/status.csv")
 
 Sources : <a href="https://ergast.com/mrd/db/">Look at the source website https://ergast.com/mrd/db/</a>
 
-The dataset consists of several files related to F1. The files contain technical information on tracks, races, constructors and drivers. In addition, data about the performance of the teams and drivers such as lap times and accidents are available.
+The dataset consists of several files related to Formula one racing sports. The files contain technical information on tracks, races, constructors and drivers. In addition, data and information about the performance of the teams and drivers such as lap times and accidents are available.
 
 <br/>
 <img src="Images/image_data.png">
@@ -31,14 +31,22 @@ The data was collected by a simple download. However, there is an API that allow
 
 The data records races, constructor and driver data since 1950. Each record in each file is identified by an unique id allowing to merge the information tables. 
 
-We have information of an informative nature such as the list of constructors: 
+Since most of the plots that shown in the results section is produced by thre filese, "results.csv", "constructor_standings.csv" and "driver_standings.csv". here we show the first 5 rows of this data file.
 
 ```{r,echo=FALSE}
-head(constructors)
+head(results, 5)
 ```
 
-We have more technical information like lap times for each race: 
+```{r,echo=FALSE}
+head(constructor_standings, 5)
+```
 
 ```{r,echo=FALSE}
-head(lap_times)
+head(driver_standings, 5)
+```
+
+We have also more technical information in our data set such as information about lap times:
+
+```{r,echo=FALSE}
+head(lap_times, 5)
 ```

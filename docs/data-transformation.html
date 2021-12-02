@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Aknin, Ashkan Bozorgzad" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -178,22 +178,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
-<p>The process of getting the data into a form in which we could work with it in R is very simple.</p>
-<p>Once the <code>csv</code> data file is downloaded you just need to use the <code>read_csv</code> function from <code>reader</code> package and the data is already usable.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-transformation.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb3-2"><a href="data-transformation.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="data-transformation.html#cb3-3" aria-hidden="true" tabindex="-1"></a>circuits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/circuits.csv&quot;</span>)</span>
-<span id="cb3-4"><a href="data-transformation.html#cb3-4" aria-hidden="true" tabindex="-1"></a>constructor_results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/constructor_results.csv&quot;</span>)</span>
-<span id="cb3-5"><a href="data-transformation.html#cb3-5" aria-hidden="true" tabindex="-1"></a>constructor_standings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/constructor_standings.csv&quot;</span>)</span>
-<span id="cb3-6"><a href="data-transformation.html#cb3-6" aria-hidden="true" tabindex="-1"></a>constructors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/constructors.csv&quot;</span>)</span>
-<span id="cb3-7"><a href="data-transformation.html#cb3-7" aria-hidden="true" tabindex="-1"></a>driver_standings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/driver_standings.csv&quot;</span>)</span>
-<span id="cb3-8"><a href="data-transformation.html#cb3-8" aria-hidden="true" tabindex="-1"></a>drivers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/drivers.csv&quot;</span>)</span>
-<span id="cb3-9"><a href="data-transformation.html#cb3-9" aria-hidden="true" tabindex="-1"></a>lap_times <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/lap_times.csv&quot;</span>)</span>
-<span id="cb3-10"><a href="data-transformation.html#cb3-10" aria-hidden="true" tabindex="-1"></a>pit_stops <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pit_stops.csv&quot;</span>)</span>
-<span id="cb3-11"><a href="data-transformation.html#cb3-11" aria-hidden="true" tabindex="-1"></a>qualifying <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/qualifying.csv&quot;</span>)</span>
-<span id="cb3-12"><a href="data-transformation.html#cb3-12" aria-hidden="true" tabindex="-1"></a>races <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/races.csv&quot;</span>)</span>
-<span id="cb3-13"><a href="data-transformation.html#cb3-13" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/results.csv&quot;</span>)</span>
-<span id="cb3-14"><a href="data-transformation.html#cb3-14" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/status.csv&quot;</span>)</span></code></pre></div>
+<p>The process of getting the data into a form in which we could work with it in R was little challenging. First the <code>csv</code> data files are downloaded. Then the <code>read_csv</code> function from <code>reader</code> package was used to store the data as lists in the corresponding variable.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-transformation.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="data-transformation.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="data-transformation.html#cb5-3" aria-hidden="true" tabindex="-1"></a>circuits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/circuits.csv&quot;</span>)</span>
+<span id="cb5-4"><a href="data-transformation.html#cb5-4" aria-hidden="true" tabindex="-1"></a>constructor_results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/constructor_results.csv&quot;</span>)</span>
+<span id="cb5-5"><a href="data-transformation.html#cb5-5" aria-hidden="true" tabindex="-1"></a>constructor_standings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/constructor_standings.csv&quot;</span>)</span>
+<span id="cb5-6"><a href="data-transformation.html#cb5-6" aria-hidden="true" tabindex="-1"></a>constructors <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/constructors.csv&quot;</span>)</span>
+<span id="cb5-7"><a href="data-transformation.html#cb5-7" aria-hidden="true" tabindex="-1"></a>driver_standings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/driver_standings.csv&quot;</span>)</span>
+<span id="cb5-8"><a href="data-transformation.html#cb5-8" aria-hidden="true" tabindex="-1"></a>drivers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/drivers.csv&quot;</span>)</span>
+<span id="cb5-9"><a href="data-transformation.html#cb5-9" aria-hidden="true" tabindex="-1"></a>lap_times <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/lap_times.csv&quot;</span>)</span>
+<span id="cb5-10"><a href="data-transformation.html#cb5-10" aria-hidden="true" tabindex="-1"></a>pit_stops <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/pit_stops.csv&quot;</span>)</span>
+<span id="cb5-11"><a href="data-transformation.html#cb5-11" aria-hidden="true" tabindex="-1"></a>qualifying <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/qualifying.csv&quot;</span>)</span>
+<span id="cb5-12"><a href="data-transformation.html#cb5-12" aria-hidden="true" tabindex="-1"></a>races <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/races.csv&quot;</span>)</span>
+<span id="cb5-13"><a href="data-transformation.html#cb5-13" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/results.csv&quot;</span>)</span>
+<span id="cb5-14"><a href="data-transformation.html#cb5-14" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/status.csv&quot;</span>)</span></code></pre></div>
+<p>One of the challenges of this project was dealing with time variables in data set. Firs, it was needed to make sure our time variables are stored in the correct format (Time format variable). Another challenge with these variable was that in our data set they are represented in two columns that is needed to be considered. Since the Formula one racing is very close between cars and constructors, times such as lap times is measured in milliseconds. As you can see in our data for lap times in Data sourced chapter, lap times are in two columns, time and milliseconds. Therefore, additional consideration is needed whenever it is needed to work with these variables.</p>
+<p>Another challenge of working with these data set was scatter of data in the different files. At the beginning, it was considered to create a large data frame of all variables that is needed and work with that. However, since we did not use all variables for all of our plots, we found that it is not efficient. For each of the plots. Therefore, for each of the plot a separate small dataframe was created.</p>
+<p>To be more familiar with formula one racing sports and our data set. Here we represents some basic plots.</p>
+<p>Here is the top 10 constructors with most wins (most points in each race count as one win for that race for each constructors) since 1950:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Here is the top 10 drivers with most wins since 1950:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 
 </div>
             </section>

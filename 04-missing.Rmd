@@ -1,4 +1,112 @@
 # Missing values
 
+
+```{r,echo=FALSE}
+library(readr)
+library(tidyverse)
+
+resultsMissing <- read_csv("data/results_Missing.csv")
+
+```
+
+```{r,echo=FALSE}
+missing_plot <- function(dataframe,percent) {
+  
+  # Function checking full missing pattern line (complete cases)
+  missing_patterns <- data.frame(is.na(dataframe)) %>%
+    group_by_all() %>%
+    count(name = "count", sort = TRUE) %>%
+    ungroup()
+  
+  complet_id = c()
+  rows = nrow(missing_patterns)
+  cols = ncol(missing_patterns)
+  for(i in 1:rows){
+    row = missing_patterns[i,-cols]
+    if(!any(row)){
+      complet_id <- append(complet_id, i)
+    }
+  }
+  
+  # Sataframe creation as in question 1
+  main_missing_patterns = missing_patterns %>% 
+    rownames_to_column("id") %>% 
+    gather(key, value, -c("count","id")) %>% 
+    mutate( highlight = ifelse( value == TRUE, "purple", ifelse(id %in% complet_id, "grey_shade", "grey") ) ) %>% 
+    mutate( numericid = as.integer(id) )
+
+  side1_missing_patterns = missing_patterns %>% 
+    rownames_to_column("id") %>% 
+    mutate( highlight = ifelse( id %in% complet_id, "1", "0" ) ) %>%
+    mutate(Percentage=round(count/sum(count)*100,2)) %>%
+    mutate( numericid = as.integer(id) )
+
+  side2 = data.frame("count" = sapply(dataframe, function(x) sum(is.na(x)))) %>% 
+    rownames_to_column("key")
+  
+  # Plot center plot
+  main = ggplot(main_missing_patterns, aes(x = fct_reorder(key, -value, sum) , y = fct_rev(fct_reorder(id, numericid)), fill = highlight)) +
+    geom_tile(color = 'white') +
+    scale_fill_manual(values = c("grey" = "#CBCBCB", "purple" = "#B29FE1", "grey_shade" = "#B3B3B3")) +
+    labs(x = "variable",y = "missing pattern") +
+    theme(legend.position = "none") +
+    annotate("text",x = cols/2, y = rows-complet_id+1, label = "complete cases",size = 5)
+  
+  # Checking if percent equal to True of False and plotting the corresponding plot
+  if (percent == FALSE) {
+    side_1 = ggplot(side1_missing_patterns, aes(x = fct_rev(fct_reorder(id, numericid)), y = count, fill = highlight)) +
+      geom_bar(stat="identity") +
+      scale_fill_manual( values = c( "1"="#6E94E6", "0"="#9EB6EE" ), guide = FALSE )+
+      labs(y = "row count", x = "") +
+      coord_flip() } 
+  else {
+    side_1 = ggplot(side1_missing_patterns, aes(x = fct_rev(fct_reorder(id, numericid)), y = Percentage, fill = highlight)) +
+      geom_bar(stat="identity") +
+      scale_fill_manual( values = c( "1"="#6E94E6", "0"="#9EB6EE" ), guide = FALSE )+
+      labs(y = "% rows", x = "") +
+      coord_flip()
+    }
+
+  # Plot top plot
+  side_2 = ggplot(side2, aes(x = fct_reorder(key, -count), y = count )) +
+    geom_bar(stat="identity",fill = "#9EB6EE") +
+    labs(y = "num rows missing", x = "")
+  
+  # Dispatch plots with patchwork
+  side_2 + plot_spacer() + main + side_1 +
+  plot_layout(widths = c(5, 1), heights = unit(c(2, 3), c('cm', 'null')))
+}
+```
+
 Even in a well-designed and controlled study, missing data occurs in almost all research. Missing data can reduce the statistical power of a study and can produce biased estimates, leading to invalid conclusions.Missing data (or missing values) is defined as the data value that is not stored for a variable in the observation of interest.
+
+The most important file in our data set is "results.csv". Looking to this file you will find some "\N"value for "time" and "position". However, these value are not missing values. This is because of the rules in formula one racing. Noticing the status column of rows with these values ("\N"), it can be noticed that the cars could not finish the race due to the damages or lapping by the winner of the race. For these cars the data for "position", "time", "rank", "fastestlap" "fastestlaptime" and "fastestspeed" was not recorded. Therefore, there is no data for them but not because of missing the data. It is because of the rules and damages. However, in order to have some idea about them we try to show them as follow.
+
+To investigate the distribution of ("\N") values by columns in ""results.csv":
+
+```{r,echo=FALSE}
+library(dplyr)
+
+colSums(is.na(resultsMissing)) %>%
+  sort(decreasing = TRUE)
+```
+
+As can be seen, most of the ("\N") value are in the columns mentioned above and the number of them are almost same. 
+
+To investigate the distribution of ("\N") values values by rows:
+
+```{r,echo=FALSE}
+rowSums(is.na(resultsMissing)) %>%
+  sort(decreasing = TRUE)
+
+```
+
+As can be seen for most of the rows, we have seven ("\N") values, since time represent in two columns ("Time" and "milisecond").
+
+```{r, fig.align='center',fig.width = 20}
+
+missing_plot(resultsMissing,percent = FALSE)
+
+```
+The plot shows the top 13th patterns of having ("\N") values. As can be seen having the complete data set is the 4th popular pattern. The most popular pattern of having ("\N") value is having this value in the seven columns that mentioned earlier. Finally, it should be mentione that these value are not missing and they just did not measured due to the damage or lapping the car by winner of the race.
 

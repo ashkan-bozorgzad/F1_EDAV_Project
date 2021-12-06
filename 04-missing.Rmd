@@ -4,6 +4,7 @@
 ```{r,echo=FALSE}
 library(readr)
 library(tidyverse)
+library(patchwork)
 
 resultsMissing <- read_csv("data/results_Missing.csv")
 
@@ -91,19 +92,10 @@ colSums(is.na(resultsMissing)) %>%
   sort(decreasing = TRUE)
 ```
 
-As can be seen, most of the ("\N") value are in the columns mentioned above and the number of them are almost same. 
+As can be seen, most of the ("\N") value are in the columns mentioned above and the number of them are almost same.The following plot summarizes all ("\N") values to investigate if there is any pasterns.
 
-To investigate the distribution of ("\N") values values by rows:
 
-```{r,echo=FALSE}
-rowSums(is.na(resultsMissing)) %>%
-  sort(decreasing = TRUE)
-
-```
-
-As can be seen for most of the rows, we have seven ("\N") values, since time represent in two columns ("Time" and "milisecond").
-
-```{r, fig.align='center',fig.width = 20}
+```{r, fig.align='center',fig.width = 20, fig.height=15}
 
 missing_plot(resultsMissing,percent = FALSE)
 

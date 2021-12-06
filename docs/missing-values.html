@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Aknin, Ashkan Bozorgzad" />
 
 
-<meta name="date" content="2021-12-02" />
+<meta name="date" content="2021-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,6 +179,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="missing-values" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
 <p>Even in a well-designed and controlled study, missing data occurs in almost all research. Missing data can reduce the statistical power of a study and can produce biased estimates, leading to invalid conclusions.Missing data (or missing values) is defined as the data value that is not stored for a variable in the observation of interest.</p>
+<p>The most important file in our data set is “results.csv”. Looking to this file you will find some “”value for “time” and “position”. However, these value are not missing values. This is because of the rules in formula one racing. Noticing the status column of rows with these values (“”), it can be noticed that the cars could not finish the race due to the damages or lapping by the winner of the race. For these cars the data for “position”, “time”, “rank”, “fastestlap” “fastestlaptime” and “fastestspeed” was not recorded. Therefore, there is no data for them but not because of missing the data. It is because of the rules and damages. However, in order to have some idea about them we try to show them as follow.</p>
+<p>To investigate the distribution of (“”) values by columns in ““results.csv”:</p>
+<pre><code>##    milliseconds            time  fastestLapTime      fastestLap fastestLapSpeed 
+##           18522           18521           18445           18444           18444 
+##            rank        position          number        resultId          raceId 
+##           18249           10768               6               0               0 
+##        driverId   constructorId            grid    positionText   positionOrder 
+##               0               0               0               0               0 
+##          points            laps        statusId 
+##               0               0               0</code></pre>
+<p>As can be seen, most of the (“”) value are in the columns mentioned above and the number of them are almost same.The following plot summarizes all (“”) values to investigate if there is any pasterns.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="1920" style="display: block; margin: auto;" />
+The plot shows the top 13th patterns of having (“”) values. As can be seen having the complete data set is the 4th popular pattern. The most popular pattern of having (“”) value is having this value in the seven columns that mentioned earlier. Finally, it should be mentione that these value are not missing and they just did not measured due to the damage or lapping the car by winner of the race.</p>
 
 </div>
             </section>

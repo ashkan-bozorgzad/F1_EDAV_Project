@@ -80,6 +80,7 @@ cat(
         stroke: teal;
         stroke-width: 2px;
       }
+      
 </style>
 </head>
 
@@ -114,15 +115,23 @@ d3.select("#selectButtonyear")
       .text(function (d) { return d; }) // text showed in the menu
       .attr("value", function (d) { return d; })
 
+
 d3.select("#selectButtonyear").on("change", function(d) {
         var v1 = document.getElementById("selectButtonyear").value
         var race = []
         var l = races["length"]
+        var existingraces = []
+        var llp = lap_times["length"]
+        for (var i = 1; i < llp; i++) {
+  existingraces.push(lap_times[i]["raceId"])
+  }
+        var uniqueArr = [...new Set(existingraces)]
         for (var i = 1; i < l; i++) {
   if(races[i]["year"] == v1){
+  if(uniqueArr.includes(races[i]["raceId"])){
   race.push(races[i]["name"])
   
-  }
+  }}
 }
       d3.select("#selectButtonrace")
       .selectAll('myOptions')
@@ -136,14 +145,22 @@ d3.select("#selectButtonyear").on("change", function(d) {
         var v1 = document.getElementById("selectButtonyear").value
         var v2 = document.getElementById("selectButtonrace").value
         var raceid = races.filter(obj=> obj.year == v1).filter(obj=> obj.name == v2)[0]["raceId"];
+        var pdriver = lap_times.filter(obj=> obj.raceId == raceid);
+        var existingdrivers = []
+        var led = pdriver["length"]
+        for (var i = 1; i < led; i++) {
+  existingdrivers.push(pdriver[i]["driverId"])
+  }
+        var uniqueArrd = [...new Set(existingdrivers)]
         var d = results.filter(obj=> obj.raceId == raceid)
         var driver = []
         var ld = d["length"]
         for (var i = 1; i < ld ; i++) {
+       
     driver.push(d[i]["driverId"]);
 }
 
-drivername = drivers.filter(obj=> obj.driverId in driver)
+drivername = drivers.filter(function(obj) {return uniqueArrd.includes(obj.driverId);})
 var drivernamelist = []
 var ldn = drivername["length"]
 for (var i = 0; i < ldn ; i++) {
@@ -216,7 +233,7 @@ var data1 = driver1laps;
 var data2 = driver2laps;
 
 
-var margin = {top: 10, right: 30, bottom: 50, left: 80},
+var margin = {top: 70, right: 100, bottom: 50, left: 70},
     width = 850 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
     
@@ -238,7 +255,7 @@ var x = d3.scaleLinear()
 svg.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
-                           (height + margin.top + 20) + ")")
+                           (height + margin.top - 40) + ")")
       .style("text-anchor", "middle")
       .text("Laps");
     
@@ -250,12 +267,13 @@ var y = d3.scaleLinear()
     
 svg.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left)
+      .attr("y", 0 - margin.left - 3)
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("Time (milliseconds)");  
 
+     
  svg.append('g')
     .selectAll("dot")
     .data(data1)
@@ -266,6 +284,14 @@ svg.append("text")
       .attr("cy", function (d) { return y(d.milliseconds); } )
       .attr("r", 3)
       .style("fill", "#69b3a2")
+      .on('mouseover', function (d, i) {
+     d3.select(this).transition()
+          .duration('10')
+          .attr("r", 7);})
+      .on('mouseout', function (d, i) {
+     d3.select(this).transition()
+          .duration('20')
+          .attr("r", 3);});
       
  svg.append('g')
     .selectAll("dot")
@@ -277,6 +303,14 @@ svg.append("text")
       .attr("cy", function (d) { return y(d.milliseconds); } )
       .attr("r", 3)
       .style("fill", "#d66074")
+      .on('mouseover', function (d, i) {
+     d3.select(this).transition()
+          .duration('10')
+          .attr("r", 7);})
+      .on('mouseout', function (d, i) {
+     d3.select(this).transition()
+          .duration('20')
+          .attr("r", 3);});
       
 
 var dotdriver1 = [{x: nlaps - 13, y : mean + 8000, label : driver1name}]

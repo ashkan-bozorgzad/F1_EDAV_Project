@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
 <p>Even in a well-designed and controlled study, missing data occurs in almost all research. Missing data can reduce the statistical power of a study and can produce biased estimates, leading to invalid conclusions.Missing data (or missing values) is defined as the data value that is not stored for a variable in the observation of interest.</p>
 <p>The most important file in our data set is “results.csv”. Looking to this file you will find some “”value for “time” and “position”. However, these value are not missing values. This is because of the rules in formula one racing. Noticing the status column of rows with these values (“”), it can be noticed that the cars could not finish the race due to the damages or lapping by the winner of the race. For these cars the data for “position”, “time”, “rank”, “fastestlap” “fastestlaptime” and “fastestspeed” was not recorded. Therefore, there is no data for them but not because of missing the data. It is because of the rules and damages. However, in order to have some idea about them we try to show them as follow.</p>
-<p>To investigate the distribution of (“”) values by columns in ““results.csv”:</p>
+<p>To investigate the distribution of (“”) values by columns in "“results.csv”:</p>
 <pre><code>##    milliseconds            time  fastestLapTime      fastestLap fastestLapSpeed 
 ##           18522           18521           18445           18444           18444 
 ##            rank        position          number        resultId          raceId 

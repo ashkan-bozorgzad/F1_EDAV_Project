@@ -186,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The data was collected by a simple download. However, there is an API that allows to make GET requests using url in order to get specific data (<a href="https://ergast.com/mrd/"> link </a>).</p>
 <p>The data records races, constructor and driver data since 1950. Each record in each file is identified by an unique id allowing to merge the information tables.</p>
 <p>Since most of the plots that shown in the results section is produced by thre filese, “results.csv”, “constructor_standings.csv” and “driver_standings.csv”. here we show the first 5 rows of this data file.</p>
-<pre><code>## # A tibble: 5 x 18
+<pre><code>## # A tibble: 5 × 18
 ##   resultId raceId driverId constructorId number  grid position positionText
 ##      &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;       
 ## 1        1     18        1             1     22     1 1        1           
@@ -194,10 +194,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3        3     18        3             3      7     7 3        3           
 ## 4        4     18        4             4      5    11 4        4           
 ## 5        5     18        5             1     23     3 5        5           
-## # ... with 10 more variables: positionOrder &lt;dbl&gt;, points &lt;dbl&gt;, laps &lt;dbl&gt;,
+## # … with 10 more variables: positionOrder &lt;dbl&gt;, points &lt;dbl&gt;, laps &lt;dbl&gt;,
 ## #   time &lt;chr&gt;, milliseconds &lt;chr&gt;, fastestLap &lt;chr&gt;, rank &lt;chr&gt;,
 ## #   fastestLapTime &lt;chr&gt;, fastestLapSpeed &lt;chr&gt;, statusId &lt;dbl&gt;</code></pre>
-<pre><code>## # A tibble: 5 x 7
+<pre><code>## # A tibble: 5 × 7
 ##   constructorStandingsId raceId constructorId points position positionText  wins
 ##                    &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
 ## 1                      1     18             1     14        1            1     1
@@ -205,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3                      3     18             3      9        2            2     0
 ## 4                      4     18             4      5        4            4     0
 ## 5                      5     18             5      2        5            5     0</code></pre>
-<pre><code>## # A tibble: 5 x 7
+<pre><code>## # A tibble: 5 × 7
 ##   driverStandingsId raceId driverId points position positionText  wins
 ##               &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
 ## 1                 1     18        1     10        1 1                1
@@ -214,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4                 4     18        4      5        4 4                0
 ## 5                 5     18        5      4        5 5                0</code></pre>
 <p>We have also more technical information in our data set such as information about lap times:</p>
-<pre><code>## # A tibble: 5 x 6
+<pre><code>## # A tibble: 5 × 6
 ##   raceId driverId   lap position time   milliseconds
 ##    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;time&gt;        &lt;dbl&gt;
 ## 1    841       20     1        1 01:38         98109

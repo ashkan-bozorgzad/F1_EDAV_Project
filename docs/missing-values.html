@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Aknin, Ashkan Bozorgzad" />
 
 
-<meta name="date" content="2021-12-07" />
+<meta name="date" content="2021-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,9 +151,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#formula-1-circuits-since-1950"><i class="fa fa-check"></i><b>5.1</b> Formula 1 circuits since 1950</a></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#italy-grand-prix-2021-monza"><i class="fa fa-check"></i><b>5.2</b> Italy Grand Prix 2021 (Monza)</a></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#more-than-just-a-race"><i class="fa fa-check"></i><b>5.3</b> More than just a race …</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#formula-1-circuits-spread-since-1950"><i class="fa fa-check"></i><b>5.1</b> Formula 1 circuits spread since 1950</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#italy-grand-prix-2021-monza-stats-and-driver-performance"><i class="fa fa-check"></i><b>5.2</b> Italy Grand Prix 2021 (Monza) stats and driver performance</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#constructor-team-performance"><i class="fa fa-check"></i><b>5.3</b> Constructor (Team) performance</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#the-role-of-technology-in-formula-1"><i class="fa fa-check"></i><b>5.4</b> The role of Technology in Formula 1</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -179,8 +180,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="missing-values" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
 <p>Even in a well-designed and controlled study, missing data occurs in almost all research. Missing data can reduce the statistical power of a study and can produce biased estimates, leading to invalid conclusions.Missing data (or missing values) is defined as the data value that is not stored for a variable in the observation of interest.</p>
-<p>The most important file in our data set is “results.csv”. Looking to this file you will find some “”value for “time” and “position”. However, these value are not missing values. This is because of the rules in formula one racing. Noticing the status column of rows with these values (“”), it can be noticed that the cars could not finish the race due to the damages or lapping by the winner of the race. For these cars the data for “position”, “time”, “rank”, “fastestlap” “fastestlaptime” and “fastestspeed” was not recorded. Therefore, there is no data for them but not because of missing the data. It is because of the rules and damages. However, in order to have some idea about them we try to show them as follow.</p>
-<p>To investigate the distribution of (“”) values by columns in "“results.csv”:</p>
+<p>The most important file in our data set is “results.csv”. Looking to this file you will find some (“\N”) value for “time” and “position”. However, all of these value are not missing values. This is because of the rules in formula one racing. Noticing the status column of rows with these values (“\N”), it can be noticed that the cars could not finish the race due to the damages or lapping by the winner of the race. For these cars the data for “position”, “time”, “rank”, “fastestlap” “fastestlaptime” and “fastestspeed” was not recorded . Therefore, there is no data for them but not because of missing the data. It is because of the rules and damages. However, in order to have some idea about them we try to show them as follow. For “fastestlaptime” and “fastestspeed” it is different, for these two value in our data set, there is no data recorded before 2004.</p>
+<p>To investigate the distribution of (“\N”) values by columns in ““results.csv”:</p>
 <pre><code>##    milliseconds            time  fastestLapTime      fastestLap fastestLapSpeed 
 ##           18522           18521           18445           18444           18444 
 ##            rank        position          number        resultId          raceId 
@@ -189,9 +190,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##               0               0               0               0               0 
 ##          points            laps        statusId 
 ##               0               0               0</code></pre>
-<p>As can be seen, most of the (“”) value are in the columns mentioned above and the number of them are almost same.The following plot summarizes all (“”) values to investigate if there is any pasterns.</p>
+<p>As can be seen, most of the (“\N”) value are in the columns mentioned above and the number of them are almost same.The following plot summarizes all (“\N”) values to investigate if there is any pasterns.</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-16-1.png" width="1920" style="display: block; margin: auto;" />
-The plot shows the top 13th patterns of having (“”) values. As can be seen having the complete data set is the 4th popular pattern. The most popular pattern of having (“”) value is having this value in the seven columns that mentioned earlier. Finally, it should be mentione that these value are not missing and they just did not measured due to the damage or lapping the car by winner of the race.</p>
+The plot shows the top 13th patterns of having (“\N”) values. As can be seen having the complete data set is the 4th popular pattern. The most popular pattern of having (“\N”) value is having this value in the seven columns that mentioned earlier. Finally, it should be mentione that these value are not missing and they just did not measured due to the damage or lapping the car by winner of the race.</p>
 
 </div>
             </section>

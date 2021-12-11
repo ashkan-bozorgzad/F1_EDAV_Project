@@ -28,15 +28,15 @@ qualifying <- read_csv("data/qualifying.csv")
 races <- read_csv("data/races.csv")
 results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
+resultsm <- read_csv("data/results_Missing.csv")
 ```
 
+In this cheater, We try to use the the data set to answer some of the important and interesting questions regarding Formula 1 racing sport. First, we represent and show the locations of circuits around the worlds since 1950.
 
 
+## Formula 1 circuits spread since 1950
 
-## Formula 1 circuits since 1950
-
-There are 77 circuits that have hosted a Formula 1 race since 1950. There are different types of circuits: permanent circuits, semi-permanent circuits and circuits created in urbanization like in Monaco. Initially the races were held mainly on circuits in Europe. From the 1980s onwards, Formula 1 races were held on the American continents and then from the 2000s onwards in Asia. A total of 32 countries have already hosted a Formula 1 Grand Prix. 
-Here is a map listing all the circuits practiced since 1950. The number of races being proportional to the radius of the circle.  
+There are 77 circuits that have hosted a Formula 1 race since 1950. These circuits can be categorized in three different groups:permanent circuits, semi-permanent circuits and circuits created in urbanization like in Monaco. Most of the circuits were in Europe since most of the Formula one team are from Europe and the logistic of transportation is easier in Europe due to the lack of technology in old days. From the 1980s, Formula 1 races were held on the American continents and then from the 2000s in Asia. A total of 32 countries have already hosted a Formula 1 Grand Prix. Here is a map listing all the circuits practiced since 1950. The number of races being proportional to the radius of the circle.  
 
 <style>
 .html-widget {
@@ -53,13 +53,13 @@ df_plot1 = merge(df_plot1, df_plot1_2, by ="circuitId")
 leaflet(df_plot1) %>% addTiles() %>% addCircleMarkers(lng= ~lng, lat=~lat, radius = ~number/8, popup = ~paste(country,location, name, number, url, sep = '<br/>'))  
 ```
 
-The 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo. There have been 71 and 67 races respectively. 
+As you can see in the map, the 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo. There have been 71 and 67 races respectively. 
 
 
 
-## Italy Grand Prix 2021 (Monza)
+## Italy Grand Prix 2021 (Monza) stats and driver performance
 
-As said before, the Italian Grand Prix is one of the most prestigious Formula 1 races of the season. In the 2021 edition, 19 drivers were on the starting line. This graph allows us to follow the progress of the race over the laps. 
+As it was mentioned before, the Italian Grand Prix is one of the most prestigious and famous Formula 1 races of the season. Due to the history and since Italy is the home of oldest formula 1 team (Ferrari) we specifically investigate the data of driver on this track for 2021. In the 2021, 19 drivers were on the starting line. This graph allows us to follow the progress of the race over the laps. 
 
 ```{r, fig.width=15, fig.height=12, fig.align="center", echo=FALSE}
 df_plot2 = filter(lap_times, raceId == 1065)
@@ -77,9 +77,7 @@ ggplot(df_plot2, aes(x = lap, stratum = position, alluvium = surname, fill = sur
   ggtitle("Italy Grand Prix 2021")
 ```
 
-We can notice on the 22nd lap a recurrent movement between the drivers. This corresponds to the pit stops which are inevitable at this level of the race for all the drivers. 
-
-At the finish line, out of the 19 pilots, only 15 crossed it. Here are the reasons: 
+We can notice on the 22nd lap a recurrent movement between the drivers. This corresponds to the pit stops which are inevitable at this level of the race for all the drivers. Pit stop is one of the most important strategic decisions that each of the team should consider fo each of the track. The team consider so many factors such as previous results, type of Tyre, whether and location of track to figure it out how many pit stop they need and in which lap. As this graph shows, one pit stop in lap 22en is the famous options for most of the teams in 2021. At the finish line, out of the 19 pilots, only 15 crossed it. Here are the reasons: 
 
 ```{r, fig.align="center", echo=FALSE}
 df_plot2 = filter(results, raceId == 1065)
@@ -94,7 +92,7 @@ formattable(df_plot2, list(
   laps = color_bar("lightgreen")))
 ```
 
-During this course we can notice a lightning rise of the Finnish pilot Valtteri Bottas. Let's compare for each lap the times done by Bottas and Ricciardo in the lead throughout the race. 
+During this race we can notice a lightning rise of the Finnish pilot Valtteri Bottas. The following graph shows the lap time for Valtteri Bottas and Daniel Richardo who won this race. 
 
 ```{r,fig.width=10, fig.height=5}
 df_plot2 = filter(lap_times, raceId == 1065 & driverId %in% c(817,822))
@@ -106,11 +104,11 @@ ggplot(df_plot2, aes(x = Laps, y = Time, color = Drivers, shape = Drivers)) +
   geom_smooth()
 ```
 
-We can notice that it is at the beginning of the race that Bottas takes delay, in particular during the first lap where his time is much longer than that of Ricciardo. Thereafter from the 12th lap, Bottas has times lower than those of Ricciardo and proceeds to a gradual rise in places.
+As can be seen, Botass lost timein the first 12 laps of this race as compared to Daniel Richardo. After lap 12 Bottas was faster but not fast enough to win the race. However, he could improve his standing after lap 12. 
 
-## More than just a race ...
+## Constructor (Team) performance
 
-We can see on the following graph the proportion of victory of each constructor on the number of realized races. The graph is ordered from left to right according to the decreasing number of victories. If two drivers of the same constructor participate in the same race it is counted as two chances to win and therefore two races. Ferrari has the most wins but a lower proportion than Mercedes or Red Bull for example. 
+We can see on the following graph the proportion of victory of each constructor on the number of realized races. The graph is ordered from left to right according to the decreasing number of victories. If two drivers of the same constructor participate in the same race it is counted as two chances to win and therefore two races. 
 
 ```{r,fig.width=10, fig.height=5}
 df_plot4 = filter(results, position == 1) %>% count(constructorId, sort = TRUE) 
@@ -135,11 +133,11 @@ ggplot(df_plot4, aes(fill = Status, y = raceId, x = reorder(name,-n))) +
     ggtitle("Proportion of races won by constructors")
 ```
 
+As can be seen, Ferrari has the most wins since it is the oldest Formula 1 team but a lower proportion of win than Mercedes or Red Bull. This shows that Mercedes or Red bull are more efficient that Ferrari.
+
 Formula One is certainly a sport in which pilots push their performance but it is also a technological competition between constructors. Each constructor wants to recruit the best drivers in order to prove that their technology is the best during the races on the circuits. In the same way, each driver wants to join the most prestigious constructors in order to have more means and the most performing machines. 
 
-On this graph on the right, we can see the constructors with which each driver has been associated during at least one season since 2000.
-
-We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed constructors several times (Alfa Romeo, Ferrari, McLaren).
+This figure shows the association of drivers to each of the constructors since 2000. 
 
 ```{r,fig.width=15, fig.height=10}
 df_plot3 = merge(results, drivers, by ="driverId")
@@ -155,3 +153,63 @@ ggplot(df_plot3, aes(axis1 = name.x, axis2 = surname, y = year)) +
   coord_flip() +
   geom_text(stat = "stratum", aes(label = after_stat(stratum)),angle=c(90))                                               
 ```
+
+
+We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed constructors several times (Alfa Romeo, Ferrari, McLaren). Considering This graph with the driver with most wins in Data transformations sections, we can conclude that one the important paramenter in constructor performance is drivers. The most successful teams such as Mercedes or Red Bull have the best drivers for long time.
+
+## The role of Technology in Formula 1
+
+In this plot we tried to show the fastest lap speed over the time in seven different tracks. Unfortunately, our data set does not have the data for fastest lap before 2004. We have some missing value in this plot, it is because in some years there was not race in thoes locations.
+
+```{r,fig.width=15, fig.height=15}
+
+df_plot4 = merge(resultsm, drivers, by ="driverId")
+df_plot4 = merge(df_plot4, constructors, by ="constructorId")
+df_plot4 = merge(df_plot4, races, by ="raceId")
+df_plot4 = df_plot4[c("name.y","year", "fastestLapTime", "fastestLapSpeed")]
+df_plot4 = na.omit(df_plot4)
+df_plot_4_FS = df_plot4 %>%
+  group_by(name.y, year) %>%
+  summarise_at(vars(fastestLapSpeed), list(FastLapSpeed = mean))
+
+df_plot_4 = filter(df_plot_4_FS, name.y  %in% c("Australian Grand Prix",
+            "Bahrain Grand Prix","Belgian Grand Prix","Brazilian Grand Prix", "British Grand Prix", "Italian Grand Prix", "Hungarian Grand Prix") )
+
+
+ggplot(data=df_plot_4, aes(x=year, y=FastLapSpeed)) +
+  geom_bar(stat="identity", width=0.4) +
+  facet_grid(name.y ~ .,) +
+  ggtitle("Fastest lap speed vs time")
+ 
+                                               
+```
+
+As can be seen in this plot, the average speed is higher in some circuits due to the geometry of that circuit. For example Italian grand Prix has one of the highest speed circuits. For most of the circuit, the fastest speed lap increases over the time. It should be mentioned that this increase is more before 2004 but unfortunately, we do not have the data. After, 2004, due to the safety of the drivers, the FIA tries to keep the fastest lap below 300 km/hr. 
+
+Another area that was influenced by technology is pit stop. Here you can see the duration of pit stop for some circuits.
+
+```{r,fig.width=15, fig.height=15}
+
+df_plot5 = merge(pit_stops, races, by ="raceId")
+
+df_plot5 = df_plot5[c("name","year", "duration")]
+
+df_plot5 <- transform(df_plot5, duration = as.numeric(duration))
+
+df_plot_5PT = df_plot5 %>%
+  group_by(name, year) %>%
+  summarise_at(vars(duration), list(PT_Duration = mean))
+
+df_plot_5 = filter(df_plot_5PT, name  %in% c("Australian Grand Prix",
+          "Belgian Grand Prix","Brazilian Grand Prix", "Japanese Grand Prix","Spanish Grand Prix") )
+
+
+ggplot(data=df_plot_5, aes(x=year, y=PT_Duration)) +
+  geom_bar(stat="identity", width=0.4) +
+  facet_grid(name ~ .,) +
+  ggtitle("Pit Stop Duration vs time")
+                                               
+```
+
+Pit stop in formula 1 is very important and improving the duration is very hard. For some years we have increase in the duration, one of the reasons can be changing the length of pit stop lane in some circuits. However, generally the pit stop duration decreased by millisecond in the tracks. Most of this reduction is because of the new tools and technology in Formula 1. 
+

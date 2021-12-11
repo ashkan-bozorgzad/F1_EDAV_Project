@@ -3,8 +3,9 @@ data-sources
 data-transformation
 missing-values
 results
-formula-1-circuits-since-1950
-italy-grand-prix-2021-monza
-more-than-just-a-race
+formula-1-circuits-spread-since-1950
+italy-grand-prix-2021-monza-stats-and-driver-performance
+constructor-team-performance
+the-role-of-technology-in-formula-1
 interactive-component
 conclusion

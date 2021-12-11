@@ -15,3 +15,16 @@ A Formula 1 car contains about 80,000 components, according to Keyworth—and 90
 
 It’s hard to overstate the role technology plays in F1 racing. Every F1 car contains 300 sensors which generate 1.1 million telemetry data points per second transmitted from the cars to the pits. During each race weekend 160 terabytes of data is sent between the remote race circuit and the F1 Media and Technology Center.
 
+The world of Formula 1 contains a lot of questions and the study of data is a way to find solution for some of these questions. For this project we decided to look at data to answer following questions:
+
+* 1- What is the spread of Formula 1 circuits around the world Since 1950?
+* 2- How is the performance of drivers in the track as race is going? And how Pit stop plays role in the performance?
+* 3- Constructor (Team) performance and the role of drivers in its the performance.
+* 4-What is the role of technology in Formula 1?
+
+
+
+
+
+
+

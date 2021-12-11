@@ -44,7 +44,7 @@ df_cons_bar <- df_cons_bar[1:10,]
 ggplot(data=df_cons_bar, aes(x=reorder(name, -n), y=n)) +
   geom_bar(stat="identity", width=0.5) +
   ggtitle("Top 10 constructors with most wins") +
-  xlab("Nmae") +
+  xlab("Name") +
   ylab("Number of wins")
 
 ```
@@ -68,7 +68,7 @@ df_dri_bar <- df_dri_bar[1:10,]
 ggplot(data=df_dri_bar, aes(x=reorder(surname, -n), y=n)) +
   geom_bar(stat="identity", width=0.5) +
   ggtitle("Top 10 drivers with most wins") +
-  xlab("Nmae") +
+  xlab("Name") +
   ylab("Number of wins")
 
 

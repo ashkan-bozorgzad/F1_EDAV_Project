@@ -31,7 +31,7 @@ status <- read_csv("data/status.csv")
 resultsm <- read_csv("data/results_Missing.csv")
 ```
 
-In this cheater, We try to use the the data set to answer some of the important and interesting questions regarding Formula 1 racing sport. First, we represent and show the locations of circuits around the worlds since 1950.
+In this chapter, We try to use the the data set to answer some of the important and interesting questions regarding Formula 1 racing sport. First, we represent and show the locations of circuits around the worlds since 1950.
 
 
 ## Formula 1 circuits spread since 1950
@@ -104,7 +104,7 @@ ggplot(df_plot2, aes(x = Laps, y = Time, color = Drivers, shape = Drivers)) +
   geom_smooth()
 ```
 
-As can be seen, Botass lost timein the first 12 laps of this race as compared to Daniel Richardo. After lap 12 Bottas was faster but not fast enough to win the race. However, he could improve his standing after lap 12. 
+As can be seen, Botass lost time in the first 12 laps of this race as compared to Daniel Richardo. After lap 12 Bottas was faster but not fast enough to win the race. However, he could improve his standing after lap 12. 
 
 ## Constructor (Team) performance
 
@@ -159,7 +159,7 @@ We have drivers like Verstappen who since the beginning of his career in 2016 is
 
 ## The role of Technology in Formula 1
 
-In this plot we tried to show the fastest lap speed over the time in seven different tracks. Unfortunately, our data set does not have the data for fastest lap before 2004. We have some missing value in this plot, it is because in some years there was not race in thoes locations.
+As we said, the objective in Formula 1 is speed and time. You have to cross the finish line first. In this plot we tried to show the fastest lap speed over the time in seven different tracks. Unfortunately, our data set does not have the data for fastest lap before 2004. We have some missing value in this plot, it is because in some years there was not race in thoes locations.
 
 ```{r,fig.width=15, fig.height=15}
 

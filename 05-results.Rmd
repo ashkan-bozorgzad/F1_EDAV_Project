@@ -161,7 +161,7 @@ We have drivers like Verstappen who since the beginning of his career in 2016 is
 
 A Formula 1 season is played out over a year that starts in March and ends in December with a break in August. The ranking is updated after each race and therefore it is important for drivers and teams to confirm their performance race after race in order to stay on top of the ranking. The following graph shows the top 6 places in each race in the 2021 season. Each line corresponds to a driver.
 
-```{r,fig.width=7, fig.height=5, fig.align="center"}
+```{r,fig.width=10, fig.height=7, fig.align="center"}
 raceIds_2021 = filter(races, year == 2021)$raceId
 results_2021 = filter(results, raceId %in% raceIds_2021)
 mergeResults_2021 = merge(results_2021, drivers, by ="driverId")
@@ -169,7 +169,7 @@ mergeResults_2021 = merge(mergeResults_2021, races, by ="raceId")
 mergeResults_2021 = mergeResults_2021 %>% select(c("surname","name","positionOrder"))
 mergeResults_2021 = mergeResults_2021 %>% pivot_wider(names_from = name, values_from = positionOrder)
 
-ggparcoord(data = mergeResults_2021, columns = c(2:17),scale="globalminmax") +
+ggparcoord(data = mergeResults_2021, columns = c(2:17), scale="globalminmax", groupColumn = "surname") +
   scale_y_reverse(limits = c(6, 0)) +
   theme(axis.text.x = element_text(angle = 60, size=10, hjust = 1)) +
   xlab("Race") + ylab("Position") +

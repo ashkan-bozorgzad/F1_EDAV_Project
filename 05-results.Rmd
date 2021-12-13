@@ -5,6 +5,7 @@ library(readr)
 library(vcd)
 library(ggalluvial)
 library(dplyr)
+library(GGally)
 library(plotly)
 library(d3r)
 library(tidyverse)
@@ -30,6 +31,7 @@ results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
 resultsm <- read_csv("data/results_Missing.csv")
 ```
+
 
 In this chapter, We try to use the the data set to answer some of the important and interesting questions regarding Formula 1 racing sport. First, we represent and show the locations of circuits around the worlds since 1950.
 
@@ -157,6 +159,25 @@ ggplot(df_plot3, aes(axis1 = name.x, axis2 = surname, y = year)) +
 
 We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed constructors several times (Alfa Romeo, Ferrari, McLaren). Considering This graph with the driver with most wins in Data transformations sections, we can conclude that one the important paramenter in constructor performance is drivers. The most successful teams such as Mercedes or Red Bull have the best drivers for long time.
 
+A Formula 1 season is played out over a year that starts in March and ends in December with a break in August. The ranking is updated after each race and therefore it is important for drivers and teams to confirm their performance race after race in order to stay on top of the ranking. The following graph shows the top 6 places in each race in the 2021 season. Each line corresponds to a driver.
+
+```{r,fig.width=7, fig.height=5, fig.align="center"}
+raceIds_2021 = filter(races, year == 2021)$raceId
+results_2021 = filter(results, raceId %in% raceIds_2021)
+mergeResults_2021 = merge(results_2021, drivers, by ="driverId")
+mergeResults_2021 = merge(mergeResults_2021, races, by ="raceId")
+mergeResults_2021 = mergeResults_2021 %>% select(c("surname","name","positionOrder"))
+mergeResults_2021 = mergeResults_2021 %>% pivot_wider(names_from = name, values_from = positionOrder)
+
+ggparcoord(data = mergeResults_2021, columns = c(2:17),scale="globalminmax") +
+  scale_y_reverse(limits = c(6, 0)) +
+  theme(axis.text.x = element_text(angle = 60, size=10, hjust = 1)) +
+  xlab("Race") + ylab("Position") +
+  ggtitle("Positions over races")
+```
+
+A solid line in this graph shows a driver who has remained consecutively in the top 6 places. In the top left corner we can see a confrontation between Hamilton and Verstappen in 5 consecutive races.
+ 
 ## The role of Technology in Formula 1
 
 As we said, the objective in Formula 1 is speed and time. You have to cross the finish line first. In this plot we tried to show the fastest lap speed over the time in seven different tracks. Unfortunately, our data set does not have the data for fastest lap before 2004. We have some missing value in this plot, it is because in some years there was not race in thoes locations.

@@ -12,9 +12,9 @@ library(leaflet)
 library(formattable)
 ```
 
-Formula 1 is a sport where teams and drivers strive to exceed their performance. It is therefore important to analyze the time for each race and each lap in order to look for details to improve. Moreover, its performance compared to the competitors is a major asset to win races. 
+Formula 1 is a sport that teams and drivers strive to exceed their performance. It is therefore important to analyze the time for each race and each lap in order to look for details to improve. Moreover, its performance compared to the competitors is a major asset to win races. 
 
-The graph opposite allows to compare the times between two drivers on the same race or on the same race but in different years for the same driver. 
+The graph allows to compare the times between two drivers on the same race or on the same race but in different years for the same driver. 
 
 You just have to choose the year, the race and the drivers and then after pressing "GO" the graph is displayed.  
 

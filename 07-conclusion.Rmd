@@ -1,22 +1,27 @@
 # Conclusion
 
-Each year billions of dollars are spent on tracks, cars, drivers and support crews. Intent on finishing in first place, teams constantly strive to extract the best possible performance from their cars in each and every race.
+Each year billions of dollars are spent on tracks, cars, drivers, and support crews. Intent on finishing in the first place, teams constantly strive to extract the best possible performance from their cars in each and every race.
 
-Increasingly, one of the most important competitive advantages in this relentless pursuit of excellence is data. By gathering and analyzing it, teams are finding new and innovative ways to win. In this project we tried to visualize formula 1 Data so answer some of the general questions in this fiels as follow:
+Increasingly, one of the most important competitive advantages in this relentless pursuit of excellence is data. By gathering and analyzing it, teams are finding new and innovative ways to win. In this project we tried to visualize Formula One data so answer some of the general questions in this field as follow:
 
 * 1- What is the spread of Formula 1 circuits around the world Since 1950?
 
-We show that since 1950 that formula 1 has started, 77 circuits  hosted the race. Between all circuits, 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo.
+We show that since 1950 that formula 1 has started, 77 circuits hosted the race. Among all circuits, the two most mythical circuits are Monza in Italy and Monaco in Monte-Carlo.
 
-* 2- How is the performance of drivers in the track as race is going? And how Pit stop plays role in the performance?
+* 2- How is the performance of drivers on the track as the race is going? And how Pit stop plays role in the performance?
 
-The  position of the drivers in Monza (Italian grand Prix) at 2021 was shown in the plot along with final position in the table. It can be seen that lap 22 was the most popular lap for pit stop in this race. Finally the lap time of two drivers, Valtteri Bottas and Daniel Richardo(Winner of the eace), was shown since lap time is one the most factor in driver performance.
+The position of the drivers in Monza (Italian Grand Prix) in 2021 was shown in the plot along with the final position in the table. It can be seen that lap 22 was the most popular lap for a pit stop in this race. Finally, the lap time of two drivers, Valtteri Bottas and Daniel Richardo(Winner of the race), was shown since lap time is one of the most factor in driver performance.
 
 
-* 3- Constructor (Team) performance and the role of drivers in its the performance.
+* 3- Constructor (Team) performance and the role of drivers in its performance.
 
-For this section, the proportion of victory of each constructors was shown. It was discussed that one of the most important factor in team performance is drivers and how the best teams most of the times have the best drivers.
+For this section, the proportion of victory of each constructor was shown. It was discussed that one of the most important factors in team performance is drivers and how the best teams most of the time have the best drivers.
+
+Also, in interactive sections, you can compare the lap time of drivers for different races in different years.
 
 * 4-What is the role of technology in Formula 1?
-For this section, it was shown for most of the circuits, the average fastest speed and pit stop duration were increased and decreased respectively but not significant. It was discussed that onr of the potential reasons for that can be the role of technology. Finally, it was shown the role of technology in logistic of formula 1 by representing the nu,ber of races per year since Formula 1 started. 
+
+For this section, it was shown for most of the circuits, the average fastest speed and pit stop duration were increased and decreased respectively but not significant. It was discussed that one of the potential reasons for that can be the role of technology. Finally, it was shown the role of technology in the logistics of Formula One by representing the number of races per year since  Formula One started.
+
+Although we tried to show the potential of Data visualization in Formula One racing sports, still there are so many areas that can be improved with the aid of Data Analysis. Getting more detailed data for all races can help to better understand and the problems and suggest solutions.
 

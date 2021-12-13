@@ -1,6 +1,6 @@
 # Data transformation
 
-The process of getting the data into a form in which we could work with it in R was little challenging. First the `csv` data files are downloaded. Then the `read_csv` function from `reader` package was used to store the data as lists in the corresponding variable.
+The process of getting the data into a form in which we could work with it in R was little challenging. First, the `CSV` data files are downloaded. Then the `read_csv` function from the `reader` package was used to store the data as listed in the corresponding variable.
 
 ```{r echo = TRUE}
 library(readr)
@@ -19,13 +19,13 @@ results <- read_csv("data/results.csv")
 status <- read_csv("data/status.csv")
 ```
 
-One of the challenges of this project was dealing with time variables in data set. First, it was needed to make sure our time variables are stored in the correct format (Time format variable). Another challenge with these variable was that in our data set they are represented in two columns that is needed to be considered. Since the Formula one racing is very close between cars and constructors, times such as lap times is measured in milliseconds. As you can see in our data for lap times in Data sourced chapter, lap times are in two columns, time and milliseconds. Therefore, additional consideration is needed whenever it is needed to work with these variables.
+One of the challenges of this project was dealing with time variables in the data set. First, it was needed to make sure our time variables are stored in the correct format (Time format variable). Another challenge with these variables was that in our data set they are represented in two columns that are needed to be considered. Since Formula One racing is very close between cars and constructors, times such as lap times are measured in milliseconds. As you can see in our data for lap times in Data sourced chapter, lap times are in two columns, time and milliseconds. Therefore, additional consideration is needed whenever it is needed to work with these variables.
 
-Another challenge of working with these data set was scatter of data in the different files. At the beginning, it was considered to create a large data frame of all variables that is needed and work with that. However, since we did not use all variables for all of our plots, we found that it is not efficient. For each of the plots. Therefore, for each of the plot a separate small dataframe was created.
+Another challenge of working with these data set was the scatter of data in the different files. In the beginning, it was considered to create a large data frame of all variables that are needed and work with that. However, since we did not use all variables for all of our plots, we found that it is not efficient. For each of the plots. Therefore, for each of the plots, a separate small dataframe was created.
 
-To be more familiar with formula one racing sports and our data set. Here we represents some basic plots.
+To be more familiar with formula one racing sports and our data set. Here we represent some basic plots.
 
-Here is the top 10 constructors with most wins (most points in each race count as one win for that race for each constructors) since 1950:
+Here are the top 10 constructors with the most wins (most points in each race count as one win for that race for each constructor) since 1950:
 
 ```{r,echo=FALSE}
 library(dplyr)
@@ -49,7 +49,7 @@ ggplot(data=df_cons_bar, aes(x=reorder(name, -n), y=n)) +
 
 ```
 
-Here is the top 10 drivers with most wins since 1950:
+Here are the top 10 drivers with the most wins since 1950:
 
 ```{r,echo=FALSE}
 library(dplyr)

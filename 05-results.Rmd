@@ -33,12 +33,12 @@ resultsm <- read_csv("data/results_Missing.csv")
 ```
 
 
-In this chapter, We try to use the the data set to answer some of the important and interesting questions regarding Formula 1 racing sport. First, we represent and show the locations of circuits around the worlds since 1950.
+In this chapter, We try to use the data set to answer some of the important and interesting questions regarding Formula 1 racing sport. First, we represent and show the locations of circuits around the world since 1950
 
 
 ## Formula 1 circuits spread since 1950
 
-There are 77 circuits that have hosted a Formula 1 race since 1950. These circuits can be categorized in three different groups:permanent circuits, semi-permanent circuits and circuits created in urbanization like in Monaco. Most of the circuits were in Europe since most of the Formula one team are from Europe and the logistic of transportation is easier in Europe due to the lack of technology in old days. From the 1980s, Formula 1 races were held on the American continents and then from the 2000s in Asia. A total of 32 countries have already hosted a Formula 1 Grand Prix. Here is a map listing all the circuits practiced since 1950. The number of races being proportional to the radius of the circle.  
+There are 77 circuits that have hosted a Formula 1 race since 1950. These circuits can be categorized into three different groups: permanent circuits, semi-permanent circuits, and circuits created in urbanization like in Monaco. Most of the circuits were in Europe since most of the Formula one team are from Europe and the logistic of transportation is easier in Europe due to the lack of technology in old days. From the 1980s, Formula 1 races were held on the American continents and then from the 2000s in Asia. A total of 32 countries have already hosted a Formula 1 Grand Prix. Here is a map listing all the circuits practiced since 1950. The number of races is proportional to the radius of the circle.  
 
 <style>
 .html-widget {
@@ -55,13 +55,12 @@ df_plot1 = merge(df_plot1, df_plot1_2, by ="circuitId")
 leaflet(df_plot1) %>% addTiles() %>% addCircleMarkers(lng= ~lng, lat=~lat, radius = ~number/8, popup = ~paste(country,location, name, number, url, sep = '<br/>'))  
 ```
 
-As you can see in the map, the 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo. There have been 71 and 67 races respectively. 
-
+As you can see on the map, the 2 most mythical circuits are Monza in Italy and Monaco in Monte-Carlo. There have been 71 and 67 races respectively. 
 
 
 ## Italy Grand Prix 2021 (Monza) stats and driver performance
 
-As it was mentioned before, the Italian Grand Prix is one of the most prestigious and famous Formula 1 races of the season. Due to the history and since Italy is the home of oldest formula 1 team (Ferrari) we specifically investigate the data of driver on this track for 2021. In the 2021, 19 drivers were on the starting line. This graph allows us to follow the progress of the race over the laps. 
+As it was mentioned before, the Italian Grand Prix is one of the most prestigious and famous Formula 1 races of the season. Due to the history and since Italy is the home of the oldest formula 1 team (Ferrari) we specifically investigate the data of drivers on this track for 2021. In 2021, 19 drivers were on the starting line. This graph allows us to follow the progress of the race over the laps. 
 
 ```{r, fig.width=15, fig.height=12, fig.align="center", echo=FALSE}
 df_plot2 = filter(lap_times, raceId == 1065)
@@ -79,7 +78,7 @@ ggplot(df_plot2, aes(x = lap, stratum = position, alluvium = surname, fill = sur
   ggtitle("Italy Grand Prix 2021")
 ```
 
-We can notice on the 22nd lap a recurrent movement between the drivers. This corresponds to the pit stops which are inevitable at this level of the race for all the drivers. Pit stop is one of the most important strategic decisions that each of the team should consider fo each of the track. The team consider so many factors such as previous results, type of Tyre, whether and location of track to figure it out how many pit stop they need and in which lap. As this graph shows, one pit stop in lap 22en is the famous options for most of the teams in 2021. At the finish line, out of the 19 pilots, only 15 crossed it. Here are the reasons: 
+We can notice on the 22nd lap a recurrent movement between the drivers. This corresponds to the pit stops which are inevitable at this level of the race for all the drivers. Pit stop is one of the most important strategic decisions that each of the team should consider for each of the tracks. The team considers so many factors such as previous results, type of Tyre, weather, and location of the track to figure out how many pit stops they need and in which lap. As this graph shows, one pit stop in lap 22en is the famous option for most of the teams in 2021. At the finish line, out of the 19 pilots, only 15 crossed it. Here are the reasons:
 
 ```{r, fig.align="center", echo=FALSE}
 df_plot2 = filter(results, raceId == 1065)
@@ -94,7 +93,7 @@ formattable(df_plot2, list(
   laps = color_bar("lightgreen")))
 ```
 
-During this race we can notice a lightning rise of the Finnish pilot Valtteri Bottas. The following graph shows the lap time for Valtteri Bottas and Daniel Richardo who won this race. 
+During this race, we can notice a lightning rise of the Finnish pilot Valtteri Bottas. The following graph shows the lap time for Valtteri Bottas and Daniel Richardo who won this race. 
 
 ```{r,fig.width=10, fig.height=5}
 df_plot2 = filter(lap_times, raceId == 1065 & driverId %in% c(817,822))
@@ -106,7 +105,7 @@ ggplot(df_plot2, aes(x = Laps, y = Time, color = Drivers, shape = Drivers)) +
   geom_smooth()
 ```
 
-As can be seen, Botass lost time in the first 12 laps of this race as compared to Daniel Richardo. After lap 12 Bottas was faster but not fast enough to win the race. However, he could improve his standing after lap 12. 
+As can be seen, Bottas lost time in the first 12 laps of this race as compared to Daniel Richardo. After lap 12 Bottas was faster but not fast enough to win the race. However, he could improve his standing after lap 12. 
 
 ## Constructor (Team) performance
 
@@ -135,7 +134,7 @@ ggplot(df_plot4, aes(fill = Status, y = raceId, x = reorder(name,-n))) +
     ggtitle("Proportion of races won by constructors")
 ```
 
-As can be seen, Ferrari has the most wins since it is the oldest Formula 1 team but a lower proportion of win than Mercedes or Red Bull. This shows that Mercedes or Red bull are more efficient that Ferrari.
+As can be seen, Ferrari has the most wins since it is the oldest Formula 1 team but a lower proportion of win than Mercedes or Red Bull. This shows that Mercedes or Red bull are more efficient than Ferrari.
 
 Formula One is certainly a sport in which pilots push their performance but it is also a technological competition between constructors. Each constructor wants to recruit the best drivers in order to prove that their technology is the best during the races on the circuits. In the same way, each driver wants to join the most prestigious constructors in order to have more means and the most performing machines. 
 
@@ -157,7 +156,7 @@ ggplot(df_plot3, aes(axis1 = name.x, axis2 = surname, y = year)) +
 ```
 
 
-We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed constructors several times (Alfa Romeo, Ferrari, McLaren). Considering This graph with the driver with most wins in Data transformations sections, we can conclude that one the important paramenter in constructor performance is drivers. The most successful teams such as Mercedes or Red Bull have the best drivers for long time.
+We have drivers like Verstappen who since the beginning of his career in 2016 is dear the same constructor (Red Bull) and drivers like Räikkönen who have changed constructors several times (Alfa Romeo, Ferrari, McLaren). Considering This graph with the driver with the most wins in the Data transformations sections, we can conclude that one of the important parameters in constructor performance is drivers. The most successful teams such as Mercedes or Red Bull have the best drivers for a long time.
 
 A Formula 1 season is played out over a year that starts in March and ends in December with a break in August. The ranking is updated after each race and therefore it is important for drivers and teams to confirm their performance race after race in order to stay on top of the ranking. The following graph shows the top 6 places in each race in the 2021 season. Each line corresponds to a driver.
 
@@ -176,11 +175,11 @@ ggparcoord(data = mergeResults_2021, columns = c(2:17), scale="globalminmax", gr
   ggtitle("Positions over races")
 ```
 
-A solid line in this graph shows a driver who has remained consecutively in the top 6 places. In the top left corner we can see a confrontation between Hamilton and Verstappen in 5 consecutive races.
+A solid line in this graph shows a driver who has remained consecutively in the top 6 places. In the top left corner, we can see a confrontation between Hamilton and Verstappen in 5 consecutive races.
  
 ## The role of Technology in Formula 1
 
-As we said, the objective in Formula 1 is speed and time. You have to cross the finish line first. In this plot we tried to show the fastest lap speed over the time in seven different tracks. Unfortunately, our data set does not have the data for fastest lap before 2004. We have some missing value in this plot, it is because in some years there was not race in thoes locations.
+As we said, the objective in Formula 1 is speed and time. You have to cross the finish line first. In this plot, we tried to show the fastest lap speed in seven different tracks. Unfortunately, our data set does not have the data for the fastest lap before 2004. We have some missing value in this plot, it is because in some years there was no race in those locations.
 
 ```{r,fig.width=15, fig.height=15}
 
@@ -205,9 +204,9 @@ ggplot(data=df_plot_4, aes(x=year, y=FastLapSpeed)) +
                                                
 ```
 
-As can be seen in this plot, the average speed is higher in some circuits due to the geometry of that circuit. For example Italian grand Prix has one of the highest speed circuits. For most of the circuit, the fastest speed lap increases over the time. It should be mentioned that this increase is more before 2004 but unfortunately, we do not have the data. After, 2004, due to the safety of the drivers, the FIA tries to keep the fastest lap below 300 km/hr. 
+As can be seen in this plot, the average speed is higher in some circuits due to the geometry of that circuit. For example, the Italian Grand Prix has one of the highest-speed circuits. For most of the circuit, the fastest speed lap increases over time. It should be mentioned that this increase is more before 2004 but unfortunately, we do not have the data. After, 2004, due to the safety of the drivers, the FIA tries to keep the fastest lap below 300 km/hr. 
 
-Another area that was influenced by technology is pit stop. Here you can see the duration of pit stop for some circuits.
+Another area that was influenced by technology is a pit stop. Here you can see the duration of a pit stop for some circuits.
 
 ```{r,fig.width=15, fig.height=15}
 
@@ -232,9 +231,9 @@ ggplot(data=df_plot_5, aes(x=year, y=PT_Duration)) +
                                                
 ```
 
-Pit stop in formula 1 is very important and improving the duration is very hard. For some years we have increase in the duration, one of the reasons can be changing the length of pit stop lane in some circuits. However, generally the pit stop duration decreased by millisecond in the tracks. Most of this reduction is because of the new tools and technology in Formula 1. 
+Pit stop in formula 1 is very important and improving the duration is very hard. For some years we have increased in the duration, one of the reasons can be changing the length of pit stop lane in some circuits. However, generally, the pit stop duration decreased by milliseconds in the tracks. Most of this reduction is because of the new tools and technology in Formula 1.
 
-Logistic is one of the most important sections of Formula 1 sports. Transferring all equipment, containers, cars around the world for each of the races needs managements and tools. Technology helps team to transfer their staff much easier these years from one continents to another in less than one week. In this plot it can be see number of races per year. 
+Logistics is one of the most important sections of Formula 1 sports. Transferring all equipment, containers, cars around the world for each of the races needs management and tools. Technology helps the team to transfer their staff much easier these years from one continents to another in less than one week. In this plot, it can be seen the number of races per year. 
 
 ```{r}
 
@@ -255,6 +254,6 @@ ggplot(df_plot6, aes(x = Freq, y = year )) +
                                                
 ```
 
-As can bee seen in this plot, generally, the number of races per year is increased. One of the reasons is technology and the being able to transfer fast and easier these year. However, technology is not the only reason we are able to watch more races today. Popularity and financial aspects of formula 1 are also important that we can have more races nowadays.   
+As can be seen in this plot, generally, the number of races per year is increased. One of the reasons is the technology and the being able to transfer fast and easier recently. However, technology is not the only reason we are able to watch more races today. The popularity and financial aspects of formula 1 are also important that we can have more races nowadays.   
 
 

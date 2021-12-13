@@ -24,7 +24,7 @@
 <meta name="author" content="Aaron Aknin, Ashkan Bozorgzad" />
 
 
-<meta name="date" content="2021-12-12" />
+<meta name="date" content="2021-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
-<p>The process of getting the data into a form in which we could work with it in R was little challenging. First the <code>csv</code> data files are downloaded. Then the <code>read_csv</code> function from <code>reader</code> package was used to store the data as lists in the corresponding variable.</p>
+<p>The process of getting the data into a form in which we could work with it in R was little challenging. First, the <code>CSV</code> data files are downloaded. Then the <code>read_csv</code> function from the <code>reader</code> package was used to store the data as listed in the corresponding variable.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-transformation.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb5-2"><a href="data-transformation.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="data-transformation.html#cb5-3" aria-hidden="true" tabindex="-1"></a>circuits <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/circuits.csv&quot;</span>)</span>
@@ -194,12 +194,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-12"><a href="data-transformation.html#cb5-12" aria-hidden="true" tabindex="-1"></a>races <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/races.csv&quot;</span>)</span>
 <span id="cb5-13"><a href="data-transformation.html#cb5-13" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/results.csv&quot;</span>)</span>
 <span id="cb5-14"><a href="data-transformation.html#cb5-14" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/status.csv&quot;</span>)</span></code></pre></div>
-<p>One of the challenges of this project was dealing with time variables in data set. First, it was needed to make sure our time variables are stored in the correct format (Time format variable). Another challenge with these variable was that in our data set they are represented in two columns that is needed to be considered. Since the Formula one racing is very close between cars and constructors, times such as lap times is measured in milliseconds. As you can see in our data for lap times in Data sourced chapter, lap times are in two columns, time and milliseconds. Therefore, additional consideration is needed whenever it is needed to work with these variables.</p>
-<p>Another challenge of working with these data set was scatter of data in the different files. At the beginning, it was considered to create a large data frame of all variables that is needed and work with that. However, since we did not use all variables for all of our plots, we found that it is not efficient. For each of the plots. Therefore, for each of the plot a separate small dataframe was created.</p>
-<p>To be more familiar with formula one racing sports and our data set. Here we represents some basic plots.</p>
-<p>Here is the top 10 constructors with most wins (most points in each race count as one win for that race for each constructors) since 1950:</p>
+<p>One of the challenges of this project was dealing with time variables in the data set. First, it was needed to make sure our time variables are stored in the correct format (Time format variable). Another challenge with these variables was that in our data set they are represented in two columns that are needed to be considered. Since Formula One racing is very close between cars and constructors, times such as lap times are measured in milliseconds. As you can see in our data for lap times in Data sourced chapter, lap times are in two columns, time and milliseconds. Therefore, additional consideration is needed whenever it is needed to work with these variables.</p>
+<p>Another challenge of working with these data set was the scatter of data in the different files. In the beginning, it was considered to create a large data frame of all variables that are needed and work with that. However, since we did not use all variables for all of our plots, we found that it is not efficient. For each of the plots. Therefore, for each of the plots, a separate small dataframe was created.</p>
+<p>To be more familiar with formula one racing sports and our data set. Here we represent some basic plots.</p>
+<p>Here are the top 10 constructors with the most wins (most points in each race count as one win for that race for each constructor) since 1950:</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Here is the top 10 drivers with most wins since 1950:</p>
+<p>Here are the top 10 drivers with the most wins since 1950:</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 
 </div>

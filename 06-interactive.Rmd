@@ -18,6 +18,8 @@ The graph opposite allows to compare the times between two drivers on the same r
 
 You just have to choose the year, the race and the drivers and then after pressing "GO" the graph is displayed.  
 
+The graph is interactive. Just move the mouse over the points to read the information about the point. 
+
 
 ```{r,echo=FALSE, results="asis"}
 library(readr)
@@ -301,14 +303,14 @@ var tooltip = d3.select("#my_dataviz")
       .attr("cy", function (d) { return y(d.milliseconds); } )
       .attr("r", 3)
       .style("fill", "#69b3a2")
-    .on('mouseover', function (d) {
+    .on('mouseover', function (event,d) {
      d3.select(this).transition()
           .duration('10')
           .attr("r", 7)
        tooltip
           .style("opacity", 1)
-          .html("Lap : " + d.lap);})
-      .on('mouseout', function (d) {
+          .html("Lap : " + d.lap +"<br/>" + "Time : " + d.milliseconds + " ms");})
+      .on('mouseout', function (event,d) {
      d3.select(this).transition()
           .duration('20')
           .attr("r", 3)
@@ -327,14 +329,14 @@ var tooltip = d3.select("#my_dataviz")
       .attr("cy", function (d) { return y(d.milliseconds); } )
       .attr("r", 3)
       .style("fill", "#d66074")
-      .on('mouseover', function (d) {
+      .on('mouseover', function (event,d) {
      d3.select(this).transition()
           .duration('10')
           .attr("r", 7)
        tooltip
           .style("opacity", 1)
-          .html("Time : " + d.milliseconds);})
-      .on('mouseout', function (d, i) {
+          .html("Lap : " + d.lap +"<br/>" + "Time : " + d.milliseconds + " ms");})
+      .on('mouseout', function (event,d) {
      d3.select(this).transition()
           .duration('20')
           .attr("r", 3)
@@ -418,4 +420,3 @@ var dotdriver2 = [{"x": nlaps - 13, "y" : mean + 6000, "label" : driver2name}]
 </script>
 </body>
 </html>
-

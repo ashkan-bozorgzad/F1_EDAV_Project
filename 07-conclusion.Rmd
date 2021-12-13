@@ -18,5 +18,5 @@ The  position of the drivers in Monza (Italian grand Prix) at 2021 was shown in 
 For this section, the proportion of victory of each constructors was shown. It was discussed that one of the most important factor in team performance is drivers and how the best teams most of the times have the best drivers.
 
 * 4-What is the role of technology in Formula 1?
-For this section, it was shown for most of the circuits, the average fastest speed and pit stop duration were increased and decreased respectively but not significant. It was discussed that onr of the potential reasons for that can be the role of technology. Finally, it was shown the role of technology in logistic of formula 1 by representing the nu,ber of races per year since Formula 1 started.
+For this section, it was shown for most of the circuits, the average fastest speed and pit stop duration were increased and decreased respectively but not significant. It was discussed that onr of the potential reasons for that can be the role of technology. Finally, it was shown the role of technology in logistic of formula 1 by representing the nu,ber of races per year since Formula 1 started. 
 

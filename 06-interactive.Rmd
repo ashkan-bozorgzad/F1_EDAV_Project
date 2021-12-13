@@ -12,6 +12,12 @@ library(leaflet)
 library(formattable)
 ```
 
+Formula 1 is a sport where teams and drivers strive to exceed their performance. It is therefore important to analyze the time for each race and each lap in order to look for details to improve. Moreover, its performance compared to the competitors is a major asset to win races. 
+
+The graph opposite allows to compare the times between two drivers on the same race or on the same race but in different years for the same driver. 
+
+You just have to choose the year, the race and the drivers and then after pressing "GO" the graph is displayed.  
+
 
 ```{r,echo=FALSE, results="asis"}
 library(readr)
@@ -273,6 +279,17 @@ svg.append("text")
       .style("text-anchor", "middle")
       .text("Time (milliseconds)");  
 
+var tooltip = d3.select("#my_dataviz")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+
+
      
  svg.append('g')
     .selectAll("dot")
@@ -284,14 +301,21 @@ svg.append("text")
       .attr("cy", function (d) { return y(d.milliseconds); } )
       .attr("r", 3)
       .style("fill", "#69b3a2")
-      .on('mouseover', function (d, i) {
+    .on('mouseover', function (d) {
      d3.select(this).transition()
           .duration('10')
-          .attr("r", 7);})
-      .on('mouseout', function (d, i) {
+          .attr("r", 7)
+       tooltip
+          .style("opacity", 1)
+          .html("Lap : " + d.lap);})
+      .on('mouseout', function (d) {
      d3.select(this).transition()
           .duration('20')
-          .attr("r", 3);});
+          .attr("r", 3)
+          tooltip
+      .transition()
+      .duration(20)
+      .style("opacity", 0);});
       
  svg.append('g')
     .selectAll("dot")
@@ -303,14 +327,21 @@ svg.append("text")
       .attr("cy", function (d) { return y(d.milliseconds); } )
       .attr("r", 3)
       .style("fill", "#d66074")
-      .on('mouseover', function (d, i) {
+      .on('mouseover', function (d) {
      d3.select(this).transition()
           .duration('10')
-          .attr("r", 7);})
+          .attr("r", 7)
+       tooltip
+          .style("opacity", 1)
+          .html("Time : " + d.milliseconds);})
       .on('mouseout', function (d, i) {
      d3.select(this).transition()
           .duration('20')
-          .attr("r", 3);});
+          .attr("r", 3)
+        tooltip
+      .transition()
+      .duration(20)
+      .style("opacity", 0);});
       
 
 var dotdriver1 = [{x: nlaps - 13, y : mean + 8000, label : driver1name}]

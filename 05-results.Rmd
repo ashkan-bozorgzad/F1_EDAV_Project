@@ -213,3 +213,26 @@ ggplot(data=df_plot_5, aes(x=year, y=PT_Duration)) +
 
 Pit stop in formula 1 is very important and improving the duration is very hard. For some years we have increase in the duration, one of the reasons can be changing the length of pit stop lane in some circuits. However, generally the pit stop duration decreased by millisecond in the tracks. Most of this reduction is because of the new tools and technology in Formula 1. 
 
+Logistic is one of the most important sections of Formula 1 sports. Transferring all equipment, containers, cars around the world for each of the races needs managements and tools. Technology helps team to transfer their staff much easier these years from one continents to another in less than one week. In this plot it can be see number of races per year. 
+
+```{r}
+
+df_plot6 = merge(races, circuits, by ="circuitId")
+
+df_plot6 = df_plot6 = df_plot6[c("name.x","year")]
+
+df_plot6 <- df_plot6 %>%
+  group_by(year) %>%
+  summarize(Freq = sum(n()), .groups = 'drop') %>%
+  ungroup()
+
+ggplot(df_plot6, aes(x = Freq, y = year )) +
+  geom_point(color = "blue") +
+  ggtitle("Number of Races in each year") +
+  ylab("Year") +
+  xlab("Number of Races")
+                                               
+```
+As can bee seen in this plot, generally, the number of races per year is increased. One of the reasons is technology and the being able to transfer fast and easier these year. However, technology is not the only reason we are able to watch more races today. Popularity and financial aspects of formula 1 are also important that we can have more races nowadays.   
+
+

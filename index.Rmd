@@ -21,10 +21,3 @@ The world of Formula 1 contains a lot of questions and the study of data is a wa
 * 2- How is the performance of drivers in the track as race is going? And how Pit stop plays role in the performance?
 * 3- Constructor (Team) performance and the role of drivers in its the performance.
 * 4-What is the role of technology in Formula 1?
-
-
-
-
-
-
-

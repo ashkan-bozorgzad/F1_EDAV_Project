@@ -233,6 +233,7 @@ ggplot(df_plot6, aes(x = Freq, y = year )) +
   xlab("Number of Races")
                                                
 ```
+
 As can bee seen in this plot, generally, the number of races per year is increased. One of the reasons is technology and the being able to transfer fast and easier these year. However, technology is not the only reason we are able to watch more races today. Popularity and financial aspects of formula 1 are also important that we can have more races nowadays.   
 
 
